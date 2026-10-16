@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #08090c;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', 'Share Tech Mono', monospace;
+  }
+}
+
+/* Custom terminal cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor::after {
+  content: '█';
+  animation: blink 1s infinite;
+  color: #00ff66;
+  margin-left: 2px;
+}
+
+/* Controlled neon accents */
+.glow-text {
+  text-shadow: 0 0 12px rgba(0, 255, 102, 0.45);
+}
+
+.glow-box {
+  box-shadow: 0 0 25px rgba(0, 255, 102, 0.15);
+}
+
+.glow-box-strong {
+  box-shadow: 0 0 35px rgba(0, 255, 102, 0.28);
+}
+
+/* Cyber grid background */
+.cyber-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(0, 255, 102, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 102, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Subtle scanline overlay */
+.scanline-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.15) 50%
+  );
+  background-size: 100% 4px;
+}
+
+/* Glassmorphic Cyber Card */
+.cyber-glass {
+  background: rgba(13, 16, 23, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 255, 102, 0.14);
+}
+
+.cyber-glass:hover {
+  border-color: rgba(0, 255, 102, 0.4);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08090c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #042f14;
+  border: 1px solid rgba(0, 255, 102, 0.3);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff66;
+}
+
+/* Selection color */
+::selection {
+  background: #00ff66;
+  color: #08090c;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
