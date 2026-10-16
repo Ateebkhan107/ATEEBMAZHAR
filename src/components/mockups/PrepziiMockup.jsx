@@ -8,7 +8,7 @@ export const PrepziiMockup = () => {
   return (
     <div className="w-full bg-[#0a0c12] border-2 border-[#00ff66]/30 shadow-[0_0_40px_rgba(0,255,102,0.15)] rounded-sm overflow-hidden font-sans text-slate-200">
       {/* Top Navbar */}
-      <div className="px-4 py-3 bg-[#0f131d] border-b border-[#00ff66]/20 flex items-center justify-between">
+      <div className="px-4 py-3 bg-[#0f131d] border-b border-[#00ff66]/20 flex flex-wrap gap-2 items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5 font-display font-black text-white text-base">
             <span className="w-5 h-5 rounded-sm bg-[#00ff66] text-black flex items-center justify-center font-mono text-xs font-bold">
@@ -99,7 +99,7 @@ export const PrepziiMockup = () => {
       {activeTab === "exam" && (
         <div className="p-5 grid grid-cols-1 md:grid-cols-12 gap-5">
           <div className="md:col-span-8 space-y-4">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-white/5 pb-2">
+            <div className="flex flex-wrap gap-2 items-center justify-between text-xs font-mono text-slate-400 border-b border-white/5 pb-2">
               <span className="text-[#00ff66]">QUESTION 14 OF 30 // PHYSICS</span>
               <span className="text-amber-400 font-bold bg-amber-400/10 px-2 py-0.5 rounded-sm">
                 ⏱ REMAINING: 02:44:18
@@ -134,15 +134,15 @@ export const PrepziiMockup = () => {
               ))}
             </div>
 
-            <div className="pt-2 flex items-center justify-between font-mono text-xs">
-              <button className="px-3 py-1.5 bg-white/5 hover:bg-white/10 text-slate-300 rounded-sm border border-white/10">
+            <div className="pt-2 flex flex-wrap gap-2 items-center justify-between font-mono text-xs">
+              <button disabled title="Static product preview" className="disabled:cursor-not-allowed disabled:opacity-60 px-3 py-1.5 bg-white/5 hover:bg-white/10 text-slate-300 rounded-sm border border-white/10">
                 Mark for Review
               </button>
               <div className="flex gap-2">
-                <button className="px-3 py-1.5 bg-white/5 hover:bg-white/10 text-slate-300 rounded-sm border border-white/10">
+                <button disabled title="Static product preview" className="disabled:cursor-not-allowed disabled:opacity-60 px-3 py-1.5 bg-white/5 hover:bg-white/10 text-slate-300 rounded-sm border border-white/10">
                   Previous
                 </button>
-                <button className="px-4 py-1.5 bg-[#00ff66] text-black font-bold rounded-sm">
+                <button disabled title="Static product preview" className="disabled:cursor-not-allowed disabled:opacity-60 px-4 py-1.5 bg-[#00ff66] text-black font-bold rounded-sm">
                   Save &amp; Next →
                 </button>
               </div>
@@ -161,9 +161,9 @@ export const PrepziiMockup = () => {
                 const isAnswered = [1, 2, 4, 7, 8, 11, 12, 13].includes(qNum);
                 const isMarked = [5, 9, 17].includes(qNum);
                 return (
-                  <button
+                  <button disabled title="Static product preview"
                     key={qNum}
-                    className={`h-7 rounded-sm flex items-center justify-center font-semibold text-[11px] transition-all ${
+                    className={`disabled:cursor-not-allowed disabled:opacity-60 h-7 rounded-sm flex items-center justify-center font-semibold text-[11px] transition-all ${
                       isCurrent
                         ? "bg-[#00ff66] text-black ring-2 ring-[#00ff66]/50 font-bold"
                         : isAnswered
@@ -199,7 +199,7 @@ export const PrepziiMockup = () => {
       {/* Tab 2: Zi AI Assistant */}
       {activeTab === "zi" && (
         <div className="p-5 space-y-4 font-sans text-xs sm:text-sm">
-          <div className="flex items-center justify-between pb-3 border-b border-white/5">
+          <div className="flex flex-wrap gap-2 items-center justify-between pb-3 border-b border-white/5">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#00ff66] animate-pulse" />
               <span className="font-display font-bold text-white text-base">
@@ -284,15 +284,15 @@ export const PrepziiMockup = () => {
               Cutoff Matching Engine (JoSAA Historical Cutoffs)
             </span>
             <div className="space-y-2 font-mono text-xs text-slate-300">
-              <div className="flex items-center justify-between p-2.5 bg-black/30 border border-white/5 rounded-sm">
+              <div className="flex flex-wrap gap-2 items-center justify-between p-2.5 bg-black/30 border border-white/5 rounded-sm">
                 <span>IIT Kharagpur — Mechanical Engineering</span>
                 <span className="text-emerald-400 font-bold">96% Probability</span>
               </div>
-              <div className="flex items-center justify-between p-2.5 bg-black/30 border border-white/5 rounded-sm">
+              <div className="flex flex-wrap gap-2 items-center justify-between p-2.5 bg-black/30 border border-white/5 rounded-sm">
                 <span>IIT Roorkee — Electrical Engineering</span>
                 <span className="text-emerald-400 font-bold">89% Probability</span>
               </div>
-              <div className="flex items-center justify-between p-2.5 bg-black/30 border border-white/5 rounded-sm">
+              <div className="flex flex-wrap gap-2 items-center justify-between p-2.5 bg-black/30 border border-white/5 rounded-sm">
                 <span>NIT Trichy — Computer Science &amp; Eng</span>
                 <span className="text-emerald-400 font-bold">94% Probability</span>
               </div>

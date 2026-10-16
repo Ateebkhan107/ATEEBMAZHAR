@@ -1,3 +1,5 @@
+import { createPortal } from "react-dom";
+import useDialog from "../hooks/useDialog";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CloseIcon, TerminalIcon } from "./Icons";
@@ -5,6 +7,7 @@ import { personalInfo, projects } from "../constants";
 import { playKeySound, playSuccessSound } from "../utils/sound";
 
 const InteractiveTerminal = ({ isOpen, onClose }) => {
+  const dialogRef = useDialog(isOpen, onClose);
   const [history, setHistory] = useState([
     {
       type: "system",
@@ -19,12 +22,13 @@ const InteractiveTerminal = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 80);
+      const timer = setTimeout(() => inputRef.current?.focus(), 80);
+      return () => clearTimeout(timer);
     }
   }, [isOpen]);
 
   useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    terminalEndRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   }, [history]);
 
   const handleCommand = (rawCmd) => {
@@ -173,7 +177,7 @@ Security subsystem prevents destruction of developer workspace.`,
     }
   };
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
@@ -186,6 +190,7 @@ Security subsystem prevents destruction of developer workspace.`,
           />
 
           <motion.div
+          ref={dialogRef} role="dialog" aria-modal="true" aria-label="Interactive terminal" tabIndex={-1}
             initial={{ opacity: 0, scale: 0.94, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 15 }}
@@ -203,6 +208,7 @@ Security subsystem prevents destruction of developer workspace.`,
                 </span>
               </div>
               <button
+                aria-label="Close interactive terminal"
                 onClick={onClose}
                 className="text-slate-400 hover:text-[#00ff66] transition-colors p-1"
               >
@@ -238,6 +244,7 @@ Security subsystem prevents destruction of developer workspace.`,
             <div className="flex items-center px-4 py-3 bg-[#0d1017] border-t border-[#00ff66]/30 gap-2">
               <span className="text-[#00ff66] font-bold">ateeb@sys:~$</span>
               <input
+                aria-label="Terminal command"
                 ref={inputRef}
                 type="text"
                 value={inputVal}
@@ -253,7 +260,7 @@ Security subsystem prevents destruction of developer workspace.`,
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>, document.body
   );
 };
 

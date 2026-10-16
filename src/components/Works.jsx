@@ -62,13 +62,13 @@ const Works = () => {
               key={project.id}
               id={`project-${project.id}`}
               variants={fadeIn("up", "spring", 0.15 * index, 0.75)}
-              className={`p-6 sm:p-10 rounded-sm bg-[#0a0c13] border-2 ${
+              className={`p-4 sm:p-10 rounded-sm bg-[#0a0c13] border-2 ${
                 isFlagship ? "border-[#00ff66]/50 shadow-[0_0_50px_rgba(0,255,102,0.15)]" : "border-[#00ff66]/20"
               } transition-all duration-300`}
             >
               {/* Project Meta Bar */}
               <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4 mb-8">
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   <span className="font-mono text-xs text-[#00ff66] font-bold">
                     [PROJECT 0{index + 1}]
                   </span>
@@ -77,7 +77,7 @@ const Works = () => {
                   </span>
                 </div>
 
-                <div className="font-mono text-xs text-slate-400 flex items-center gap-2">
+                <div className="font-mono text-xs text-slate-400 flex flex-wrap items-center gap-2">
                   <span className="text-white font-medium">{project.role}</span>
                   <span>•</span>
                   <span>{project.category}</span>
@@ -155,7 +155,7 @@ const Works = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-3 bg-[#11141e] hover:bg-[#181d2a] border border-white/10 hover:border-[#00ff66]/40 text-slate-300 hover:text-[#00ff66] rounded-sm transition-colors"
-                        aria-label="GitHub Repository"
+                        aria-label="GitHub Profile"
                       >
                         <GithubIcon className="w-4 h-4" />
                       </a>

@@ -21,7 +21,8 @@ const Navbar = ({ onOpenCommandPalette, onOpenTerminal }) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -48,7 +49,7 @@ const Navbar = ({ onOpenCommandPalette, onOpenTerminal }) => {
           className="flex items-center gap-2.5 group"
           onClick={() => {
             setActive("");
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
           }}
         >
           <div className="w-8 h-8 rounded-sm bg-[#00ff66]/10 border border-[#00ff66]/40 flex items-center justify-center group-hover:border-[#00ff66] transition-colors">
@@ -68,7 +69,7 @@ const Navbar = ({ onOpenCommandPalette, onOpenTerminal }) => {
         </Link>
 
         {/* Desktop Nav Links */}
-        <ul className="list-none hidden md:flex flex-row items-center gap-8">
+        <ul className="list-none hidden xl:flex flex-row items-center gap-8">
           {navLinks.map((link) => (
             <li
               key={link.id}
@@ -91,9 +92,11 @@ const Navbar = ({ onOpenCommandPalette, onOpenTerminal }) => {
         </ul>
 
         {/* Utility Tools (Command Palette, Audio Toggle, Terminal) */}
-        <div className="hidden sm:flex items-center gap-2.5">
+        <div className="hidden xl:flex items-center gap-2.5">
           {/* Sound Toggle */}
           <button
+            aria-label={soundActive ? "Mute sound" : "Enable sound"}
+            aria-pressed={soundActive}
             onClick={toggleSound}
             title={soundActive ? "Mute synthesizer sound" : "Enable futuristic sound FX"}
             className={`p-2 rounded-sm border transition-colors ${
@@ -138,8 +141,10 @@ const Navbar = ({ onOpenCommandPalette, onOpenTerminal }) => {
         </div>
 
         {/* Mobile Menu Hamburger */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="xl:hidden flex items-center gap-2">
           <button
+            aria-label={soundActive ? "Mute sound" : "Enable sound"}
+            aria-pressed={soundActive}
             onClick={toggleSound}
             className={`p-2 rounded-sm border ${
               soundActive
@@ -157,6 +162,8 @@ const Navbar = ({ onOpenCommandPalette, onOpenTerminal }) => {
               setToggle(!toggle);
             }}
             aria-label="Toggle Navigation"
+            aria-expanded={toggle}
+            aria-controls="mobile-navigation"
           >
             {toggle ? <CloseIcon className="w-5 h-5" /> : "[≡]"}
           </button>
@@ -166,7 +173,7 @@ const Navbar = ({ onOpenCommandPalette, onOpenTerminal }) => {
 
       {/* Mobile Menu Dropdown */}
       {toggle && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-[#0a0c13] border-b border-[#00ff66]/30 shadow-2xl p-6 z-50">
+        <div id="mobile-navigation" className="xl:hidden absolute top-full left-0 w-full bg-[#0a0c13] border-b border-[#00ff66]/30 shadow-2xl p-6 z-50">
           <ul className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <li

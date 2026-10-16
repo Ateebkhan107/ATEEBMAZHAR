@@ -1,5 +1,7 @@
+import { useReducedMotion } from "framer-motion";
+import SceneCanvas from "./SceneCanvas";
 import { Suspense, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -15,12 +17,15 @@ for (let i = 0; i < PARTICLE_COUNT; i++) {
 }
 
 const TechSculpture = () => {
+  const reducedMotion = useReducedMotion();
   const outerRingRef = useRef();
   const innerRingRef = useRef();
   const coreRef = useRef();
   const particlesRef = useRef();
 
   useFrame((state, delta) => {
+    if (reducedMotion) return;
+    delta = Math.min(delta, 0.05);
     const time = state.clock.getElapsedTime();
     const targetX = state.pointer.x * 0.45;
     const targetY = state.pointer.y * 0.45;
@@ -52,7 +57,7 @@ const TechSculpture = () => {
   });
 
   return (
-    <group dispose={null}>
+    <group>
       {/* Dynamic Particle Orbit Cloud */}
       <points ref={particlesRef}>
         <bufferGeometry>
@@ -71,7 +76,7 @@ const TechSculpture = () => {
       </points>
 
       {/* Floating Core */}
-      <Float speed={2.5} rotationIntensity={0.6} floatIntensity={1.2}>
+      <Float autoInvalidate={!reducedMotion} speed={reducedMotion ? 0 : 2.5} rotationIntensity={0.6} floatIntensity={1.2}>
         {/* Core Wireframe Icosahedron */}
         <mesh ref={coreRef} scale={1.3}>
           <icosahedronGeometry args={[1, 1]} />
@@ -138,7 +143,7 @@ const TechSculpture = () => {
 
 const HeroCoreCanvas = () => {
   return (
-    <div className="w-full h-full min-h-[360px] sm:min-h-[460px] lg:min-h-[540px] relative">
+    <div className="w-full h-[360px] sm:h-[460px] lg:h-[540px] relative">
       {/* Decorative cyber grid backdrop */}
       <div className="absolute inset-0 bg-radial from-[#00ff66]/10 via-transparent to-transparent pointer-events-none" />
 
@@ -152,7 +157,7 @@ const HeroCoreCanvas = () => {
         <span className="text-slate-400">PHYSICS: LERP_DAMPED</span>
       </div>
 
-      <Canvas
+      <SceneCanvas
         camera={{ position: [0, 0, 7.2], fov: 42 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true }}
@@ -160,7 +165,7 @@ const HeroCoreCanvas = () => {
         <Suspense fallback={null}>
           <TechSculpture />
         </Suspense>
-      </Canvas>
+      </SceneCanvas>
     </div>
   );
 };

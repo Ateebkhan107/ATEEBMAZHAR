@@ -10,7 +10,6 @@ import CommandPalette from "./CommandPalette";
 import InteractiveTerminal from "./InteractiveTerminal";
 import ResumeModal from "./ResumeModal";
 import CustomCursor from "./CustomCursor";
-import StarsCanvas from "./canvas/Stars";
 
 export {
   Navbar,
@@ -25,5 +24,4 @@ export {
   InteractiveTerminal,
   ResumeModal,
   CustomCursor,
-  StarsCanvas,
 };

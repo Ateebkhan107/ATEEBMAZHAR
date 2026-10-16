@@ -1,3 +1,5 @@
+import { createPortal } from "react-dom";
+import useDialog from "../hooks/useDialog";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   CloseIcon, 
@@ -11,9 +13,10 @@ import {
 } from "./Icons";
 
 const CaseStudyModal = ({ project, onClose }) => {
+  const dialogRef = useDialog(Boolean(project), onClose);
   if (!project) return null;
 
-  return (
+  return createPortal(
     <AnimatePresence>
       <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         {/* Backdrop */}
@@ -27,6 +30,7 @@ const CaseStudyModal = ({ project, onClose }) => {
 
         {/* Modal Window */}
         <motion.div
+          ref={dialogRef} role="dialog" aria-modal="true" aria-label="Project case study" tabIndex={-1}
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -47,9 +51,9 @@ const CaseStudyModal = ({ project, onClose }) => {
               </div>
             </div>
             <button
+              aria-label="Close project case study"
               onClick={onClose}
               className="text-slate-400 hover:text-[#00ff66] transition-colors p-2 rounded-sm bg-white/5 border border-white/10 hover:border-[#00ff66]/40"
-              aria-label="Close modal"
             >
               <CloseIcon className="w-5 h-5" />
             </button>
@@ -88,7 +92,7 @@ const CaseStudyModal = ({ project, onClose }) => {
                   Status
                 </span>
                 <span className="font-semibold text-sm text-[#00ff66] mt-1 block">
-                  {project.live ? "Live in Production" : "Active Repository"}
+                  {project.live ? "Live in Production" : "Project Showcase"}
                 </span>
               </div>
             </div>
@@ -179,7 +183,7 @@ const CaseStudyModal = ({ project, onClose }) => {
                   className="px-4 py-2 rounded-sm bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#00ff66]/40 font-mono text-xs text-slate-200 transition-colors flex items-center gap-2"
                 >
                   <GithubIcon className="w-4 h-4" />
-                  <span>GitHub Repository</span>
+                  <span>GitHub Profile</span>
                 </a>
               )}
               {project.live && (
@@ -197,7 +201,7 @@ const CaseStudyModal = ({ project, onClose }) => {
           </div>
         </motion.div>
       </div>
-    </AnimatePresence>
+    </AnimatePresence>, document.body
   );
 };
 

@@ -119,3 +119,13 @@
     scroll-behavior: auto !important;
   }
 }
+/* Keep anchor targets clear of the fixed navigation. */
+[id] { scroll-margin-top: 6rem; }
+:focus-visible { outline: 2px solid #00ff66; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+}
+
+/* Allow nested grid items and long technical labels to shrink on narrow screens. */
+.grid > * { min-width: 0; }
+main, [role="dialog"] { overflow-wrap: anywhere; }

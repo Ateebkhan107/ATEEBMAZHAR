@@ -4,8 +4,8 @@ export const SkaleKraftMockup = () => {
   return (
     <div className="w-full bg-[#080a10] border-2 border-[#00ff66]/30 shadow-[0_0_40px_rgba(0,255,102,0.12)] rounded-sm overflow-hidden font-sans text-slate-200">
       {/* Browser Chrome Header */}
-      <div className="px-4 py-2.5 bg-[#0e111a] border-b border-[#00ff66]/20 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      <div className="px-4 py-2.5 bg-[#0e111a] border-b border-[#00ff66]/20 flex flex-wrap gap-2 items-center justify-between">
+        <div className="flex flex-wrap items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
           <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
           <span className="w-2.5 h-2.5 rounded-full bg-[#00ff66]/80" />
@@ -31,7 +31,7 @@ export const SkaleKraftMockup = () => {
       {/* Website Viewport */}
       <div className="p-6 sm:p-8 space-y-6 bg-gradient-to-b from-[#090b12] to-[#06080d] cyber-grid-bg relative">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="font-display font-black text-xl tracking-tight text-white">
               SKALE<span className="text-[#00ff66]">KRAFT</span>
             </span>
@@ -82,7 +82,7 @@ export const SkaleKraftMockup = () => {
         </div>
 
         {/* Direct Action Link */}
-        <div className="pt-2 flex items-center justify-between text-xs font-mono">
+        <div className="pt-2 flex flex-wrap gap-2 items-center justify-between text-xs font-mono">
           <span className="text-slate-400">// PRODUCTION READY &amp; DEPLOYED</span>
           <a
             href="https://skalekraft.in"

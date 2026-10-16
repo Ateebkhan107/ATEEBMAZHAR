@@ -112,7 +112,9 @@ const Tech = () => {
                   const isSelected = selectedTech?.name === tech.name;
 
                   return (
-                    <motion.div
+                    <motion.button
+                      type="button"
+                      aria-pressed={isSelected}
                       key={tech.name}
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.98 }}
@@ -135,7 +137,7 @@ const Tech = () => {
                       <span className="font-mono text-[10px] text-[#00ff66] mt-0.5">
                         {tech.level}
                       </span>
-                    </motion.div>
+                    </motion.button>
                   );
                 })}
               </div>

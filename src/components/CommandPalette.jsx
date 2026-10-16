@@ -1,3 +1,5 @@
+import { createPortal } from "react-dom";
+import useDialog from "../hooks/useDialog";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -10,11 +12,29 @@ import { personalInfo } from "../constants";
 import { setSoundEnabled, getSoundEnabled, playKeySound, playSuccessSound } from "../utils/sound";
 
 const CommandPalette = ({ isOpen, onClose, onOpenTerminal, onOpenResume }) => {
+  const dialogRef = useDialog(isOpen, onClose);
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [copied, setCopied] = useState(false);
   const [soundActive, setSoundActive] = useState(getSoundEnabled());
   const inputRef = useRef(null);
+  const [copyError, setCopyError] = useState("");
+  useEffect(() => {
+    if (!copied) return;
+    const timer = setTimeout(() => setCopied(false), 2000);
+    return () => clearTimeout(timer);
+  }, [copied]);
+
+  const copyEmail = async () => {
+            setCopyError("");
+            try {
+              await navigator.clipboard.writeText(personalInfo.email);
+              setCopied(true);
+              playSuccessSound();
+            } catch {
+              setCopyError(`Copy unavailable. Email: ${personalInfo.email}`);
+            }
+  };
 
   const commands = [
     {
@@ -33,7 +53,7 @@ const CommandPalette = ({ isOpen, onClose, onOpenTerminal, onOpenResume }) => {
       items: [
         { id: "prepzii", label: "Explore Prepzii (EdTech Flagship)", action: () => scrollToSection("project-prepzii") },
         { id: "caseflow", label: "Explore CaseFlow (AI/RAG LegalTech)", action: () => scrollToSection("project-caseflow") },
-        { id: "skalekraft", label: "Explore SkaleKraft.in (Digital Agency)", action: () => window.open("https://skalekraft.in", "_blank") },
+        { id: "skalekraft", label: "Explore SkaleKraft.in (Digital Agency)", action: () => window.open("https://skalekraft.in", "_blank", "noopener,noreferrer") },
         { id: "flamzi", label: "Explore Flamzi (Flutter Mobile App)", action: () => scrollToSection("project-flamzi") },
       ],
     },
@@ -44,8 +64,9 @@ const CommandPalette = ({ isOpen, onClose, onOpenTerminal, onOpenResume }) => {
           id: "resume",
           label: "View / Download Resume",
           action: () => {
+            onClose();
             if (onOpenResume) onOpenResume();
-            else window.open("/resume.pdf", "_blank");
+            else window.open("/resume.pdf", "_blank", "noopener,noreferrer");
           },
         },
         {
@@ -59,22 +80,17 @@ const CommandPalette = ({ isOpen, onClose, onOpenTerminal, onOpenResume }) => {
         {
           id: "github",
           label: "Open GitHub Profile (@ateebmazhar)",
-          action: () => window.open(personalInfo.github, "_blank"),
+          action: () => window.open(personalInfo.github, "_blank", "noopener,noreferrer"),
         },
         {
           id: "linkedin",
           label: "Open LinkedIn Profile",
-          action: () => window.open(personalInfo.linkedin, "_blank"),
+          action: () => window.open(personalInfo.linkedin, "_blank", "noopener,noreferrer"),
         },
         {
           id: "copy-email",
           label: "Copy Email to Clipboard",
-          action: () => {
-            navigator.clipboard.writeText(personalInfo.email);
-            setCopied(true);
-            playSuccessSound();
-            setTimeout(() => setCopied(false), 2000);
-          },
+          action: copyEmail
         },
         {
           id: "toggle-sound",
@@ -94,7 +110,7 @@ const CommandPalette = ({ isOpen, onClose, onOpenTerminal, onOpenResume }) => {
     onClose();
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      el.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     }
   };
 
@@ -142,7 +158,7 @@ const CommandPalette = ({ isOpen, onClose, onOpenTerminal, onOpenResume }) => {
     }
   };
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 sm:px-6">
@@ -157,6 +173,7 @@ const CommandPalette = ({ isOpen, onClose, onOpenTerminal, onOpenResume }) => {
 
           {/* Palette Container */}
           <motion.div
+          ref={dialogRef} role="dialog" aria-modal="true" aria-label="Command palette" tabIndex={-1}
             initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
@@ -176,6 +193,7 @@ const CommandPalette = ({ isOpen, onClose, onOpenTerminal, onOpenResume }) => {
                   ESC to close
                 </span>
                 <button
+                  aria-label="Close command palette"
                   onClick={onClose}
                   className="text-slate-400 hover:text-[#00ff66] transition-colors p-1"
                 >
@@ -188,6 +206,7 @@ const CommandPalette = ({ isOpen, onClose, onOpenTerminal, onOpenResume }) => {
             <div className="relative px-4 py-3 border-b border-[#00ff66]/15 flex items-center gap-3 bg-[#0f121a]">
               <CommandIcon className="w-5 h-5 text-[#00ff66]" />
               <input
+                aria-label="Search commands"
                 ref={inputRef}
                 type="text"
                 value={query}
@@ -207,6 +226,7 @@ const CommandPalette = ({ isOpen, onClose, onOpenTerminal, onOpenResume }) => {
               )}
             </div>
 
+            {copyError && <p role="alert" className="p-3 font-mono text-xs text-red-400">{copyError}</p>}
             {/* Results */}
             <div className="max-h-[340px] overflow-y-auto p-2">
               {filteredCommands.length === 0 ? (
@@ -264,7 +284,7 @@ const CommandPalette = ({ isOpen, onClose, onOpenTerminal, onOpenResume }) => {
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>, document.body
   );
 };
 

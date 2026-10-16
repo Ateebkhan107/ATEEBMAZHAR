@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { MotionConfig } from "framer-motion";
+const StarsCanvas = lazy(() => import("./components/canvas/Stars"));
+import { lazy, Suspense, useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import {
   Navbar,
@@ -13,7 +15,6 @@ import {
   InteractiveTerminal,
   ResumeModal,
   CustomCursor,
-  StarsCanvas,
 } from "./components";
 
 const App = () => {
@@ -39,10 +40,11 @@ const App = () => {
   }, []);
 
   return (
+    <MotionConfig reducedMotion="user">
     <BrowserRouter>
       <div className="relative z-0 bg-[#08090c] text-slate-100 min-h-screen selection:bg-[#00ff66] selection:text-black">
         {/* Background Ambient Stars Field (Fixed behind all content) */}
-        <StarsCanvas />
+        <Suspense fallback={null}><StarsCanvas /></Suspense>
 
         {/* Sleek Custom Cyber Cursor */}
         <CustomCursor />
@@ -100,6 +102,7 @@ const App = () => {
         />
       </div>
     </BrowserRouter>
+    </MotionConfig>
   );
 };
 

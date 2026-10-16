@@ -1,13 +1,18 @@
+import { useReducedMotion } from "framer-motion";
+import SceneCanvas from "./SceneCanvas";
 import { Suspense, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
 const CyberGlobe = () => {
+  const reducedMotion = useReducedMotion();
   const globeRef = useRef();
   const atmosphereRef = useRef();
   const ringRef = useRef();
 
   useFrame((state, delta) => {
+    if (reducedMotion) return;
+    delta = Math.min(delta, 0.05);
     if (globeRef.current) {
       globeRef.current.rotation.y += delta * 0.15;
     }
@@ -20,7 +25,7 @@ const CyberGlobe = () => {
   });
 
   return (
-    <group dispose={null}>
+    <group>
       {/* Main Wireframe Globe */}
       <mesh ref={globeRef}>
         <sphereGeometry args={[2.5, 48, 48]} />
@@ -66,16 +71,17 @@ const CyberGlobe = () => {
 };
 
 const EarthCanvas = () => {
+  const reducedMotion = useReducedMotion();
   return (
-    <div className="w-full h-full min-h-[340px] sm:min-h-[440px] relative">
-      <Canvas
+    <div className="w-full h-[340px] sm:h-[440px] relative">
+      <SceneCanvas
         camera={{ position: [0, 0, 6.8], fov: 45 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true }}
       >
         <Suspense fallback={null}>
           <OrbitControls
-            autoRotate
+            autoRotate={!reducedMotion}
             autoRotateSpeed={1.2}
             enableZoom={false}
             maxPolarAngle={Math.PI / 2 + 0.3}
@@ -83,7 +89,7 @@ const EarthCanvas = () => {
           />
           <CyberGlobe />
         </Suspense>
-      </Canvas>
+      </SceneCanvas>
     </div>
   );
 };

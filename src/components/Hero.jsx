@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { lazy, useState, useEffect } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { styles } from "../styles";
 import { personalInfo } from "../constants";
-import HeroCoreCanvas from "./canvas/HeroCore";
+import DeferredScene from "./DeferredScene";
+const HeroCoreCanvas = lazy(() => import("./canvas/HeroCore"));
 import { 
   GithubIcon, 
   LinkedInIcon, 
@@ -21,13 +22,14 @@ const TERMINAL_LOGS = [
 ];
 
 const Hero = ({ onOpenCommandPalette, onOpenTerminal, onOpenResume }) => {
+  const reducedMotion = useReducedMotion();
   const [displayedLogs, setDisplayedLogs] = useState([]);
   const [lineIdx, setLineIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
-  const isTypingDone = lineIdx >= TERMINAL_LOGS.length;
+  const isTypingDone = reducedMotion || lineIdx >= TERMINAL_LOGS.length;
 
   useEffect(() => {
-    if (lineIdx >= TERMINAL_LOGS.length) {
+    if (reducedMotion || lineIdx >= TERMINAL_LOGS.length) {
       return;
     }
 
@@ -52,7 +54,7 @@ const Hero = ({ onOpenCommandPalette, onOpenTerminal, onOpenResume }) => {
       setCharIdx(0);
     }, 320);
     return () => clearTimeout(lineBreakTimer);
-  }, [lineIdx, charIdx]);
+  }, [lineIdx, charIdx, reducedMotion]);
 
   return (
     <section id="hero" className="relative w-full min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden cyber-grid-bg">
@@ -100,7 +102,7 @@ const Hero = ({ onOpenCommandPalette, onOpenTerminal, onOpenResume }) => {
               ATEEB <span className="text-[#00ff66] glow-text">MAZHAR</span>
             </h1>
 
-            <p className="mt-3 font-mono text-sm sm:text-lg text-slate-300 font-medium tracking-wide flex items-center gap-2">
+            <p className="mt-3 font-mono text-sm sm:text-lg text-slate-300 font-medium tracking-wide flex flex-wrap items-center gap-2">
               <span className="text-[#00ff66] font-bold">&gt;</span>
               <span>Software Engineer</span>
               <span className="text-[#00ff66]">•</span>
@@ -148,7 +150,7 @@ const Hero = ({ onOpenCommandPalette, onOpenTerminal, onOpenResume }) => {
 
             {/* Terminal Screen */}
             <div className="p-4 sm:p-5 font-mono text-xs sm:text-sm text-[#00ff66] leading-relaxed min-h-[140px] bg-black/60 scanline-overlay">
-              {displayedLogs.map((log, idx) => (
+              {(reducedMotion ? TERMINAL_LOGS : displayedLogs).map((log, idx) => (
                 <div key={idx} className="mb-1.5 flex items-start gap-1">
                   <span>{log}</span>
                 </div>
@@ -187,7 +189,7 @@ const Hero = ({ onOpenCommandPalette, onOpenTerminal, onOpenResume }) => {
               onClick={() => {
                 playSuccessSound();
                 if (onOpenResume) onOpenResume();
-                else window.open("/resume.pdf", "_blank");
+                else window.open("/resume.pdf", "_blank", "noopener,noreferrer");
               }}
               className="px-5 py-3.5 bg-[#11141e] hover:bg-[#181d2a] border border-[#00ff66]/30 hover:border-[#00ff66] text-white font-mono text-sm tracking-wider rounded-sm transition-all flex items-center gap-2"
             >
@@ -222,7 +224,7 @@ const Hero = ({ onOpenCommandPalette, onOpenTerminal, onOpenResume }) => {
 
         {/* Right Column: 3D Wireframe Cyber Sculpture */}
         <div className="lg:col-span-5 flex items-center justify-center relative">
-          <HeroCoreCanvas />
+          <DeferredScene scene={HeroCoreCanvas} className="relative w-full h-[360px] sm:h-[460px] lg:h-[540px]" />
         </div>
 
       </div>
@@ -234,7 +236,7 @@ const Hero = ({ onOpenCommandPalette, onOpenTerminal, onOpenResume }) => {
         </span>
         <div className="w-5 h-9 rounded-full border-2 border-[#00ff66]/40 flex justify-center p-1">
           <motion.div
-            animate={{ y: [0, 14, 0] }}
+            animate={{ y: reducedMotion ? 0 : [0, 14, 0] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
             className="w-1.5 h-1.5 rounded-full bg-[#00ff66]"
           />

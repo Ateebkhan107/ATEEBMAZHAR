@@ -1,53 +1,74 @@
 %PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
 1 0 obj
-<< /Type /Catalog /Pages 2 0 R >>
+<<
+/F1 2 0 R /F2 3 0 R
+>>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
 endobj
 4 0 obj
-<< /Length 420 >>
-stream
-BT
-/F1 22 Tf
-50 720 Td
-(ATEEB MAZHAR - SOFTWARE ENGINEER & FULL-STACK DEVELOPER) Tj
-/F1 12 Tf
-0 -28 Td
-(Email: ateebmazhar07@gmail.com | Location: Kolkata, India | Class of 2027) Tj
-0 -20 Td
-(GitHub: https://github.com/ateebmazhar | LinkedIn: https://linkedin.com/in/ateebmazhar) Tj
-0 -36 Td
-(EDUCATION: Techno India University, Kolkata - B.Tech Computer Science & Eng) Tj
-0 -36 Td
-(STARTUP EXPERIENCE: Co-Founder & Full-Stack Developer @ Prepzii (2024 - Present)) Tj
-0 -20 Td
-(- Architected AI-powered exam prep SaaS platform for JEE & NEET aspirants) Tj
-0 -20 Td
-(- Built custom mock exam simulator, dynamic question palette, and AI assistant Zi) Tj
-0 -36 Td
-(VENTURES: Founder & Lead Developer @ SkaleKraft (https://skalekraft.in)) Tj
-0 -36 Td
-(PROJECTS: CaseFlow (LegalTech RAG AI) | Flamzi (Flutter Productivity App)) Tj
-ET
-endstream
+<<
+/Contents 8 0 R /MediaBox [ 0 0 612 792 ] /Parent 7 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
 endobj
 5 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+<<
+/PageMode /UseNone /Pages 7 0 R /Type /Catalog
+>>
+endobj
+6 0 obj
+<<
+/Author (Ateeb Mazhar) /CreationDate (D:20261016202313+05'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20261016202313+05'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (\(unspecified\)) /Title (Ateeb Mazhar - Resume) /Trapped /False
+>>
+endobj
+7 0 obj
+<<
+/Count 1 /Kids [ 4 0 R ] /Type /Pages
+>>
+endobj
+8 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 869
+>>
+stream
+Gat=h>Aour&;B$5/*<gO.c2B,gJ`p7,`Z0bKlpQfH.g!ehAR.29@?6,nX[X=EtNHSBI*doLXgU'1DnKYAX(dh"urC)EXa]rTM$u?V?M&CKHAqk))%8`!M-r]`Md4Qna?Ia"#L4oBcHo*L1$JHjd'\6dF6.DbE]3&k"nCii1"e/l$1PTJ*,0$N^nUn01Jl,4ST!G@PVZme/=:-Jc5`I'o`,`Zet.fc`Wh&CGM=&M7;5W)#\p4lLhU_M#8:FHgIo3Ys573B5;+7pVE+Q<OS]/[\WOp,;BkZ!1;dD/nWFFQF4?&.kNZ3,_eN;8HPbW+pTesU((&&%O2huL0MQOjZ+SZ0\^2`7pjAR\#XaLben]ZKXr`&#-_,Xbm1B%8uQlPVcd5B4D8UU2`r)%f@$TsKIi%8Hs=?%hQ2BK=!gEn)_YpYOh[cIS1fU,*R1G`TKH?"jJA+L.3<`"$h[KVFW&)=f$m,B9]EEU49IeZ>Qu/m7HA2*Z/)T-[_&.S`nYl^0aI7_"$.XT+W2D!_bCIU+qgcbLn]X-=Km?trkP9S7JRY[),HlYJD1uS_a6.-jBS_>j1XBA:)1:h3ukm6:)9pbidp)4328s34Rro!q/7$9MKn&8k!L%A[7mkCn,c[ETI$+4$7ntA`h^cOnlfW?YA##KC])tAL_Kt\Y&Ngg"<1O=jruF>1!/\l5"QNJ!:C5dl]Hjb79h9J#:?iKK[*#hO;`#T?>cNqgZi!up\C7Ol,"\E!+%H9i@KAC#(M8uj,>Q)#%BNO\J@,-C^R^;(KR`&\+>G?cb8!H),fN9ZCJO(nq]gM^1'r"Cn>^!NP%Eo+,Cl@pfSusN=)NFDk87`&Ld1"Esb[2reK1pD40AH0E8/Ve,~>endstream
 endobj
 xref
-0 6
+0 9
 0000000000 65535 f 
-0000000009 00000 n 
-0000000058 00000 n 
-0000000115 00000 n 
-0000000224 00000 n 
-0000000696 00000 n 
+0000000061 00000 n 
+0000000102 00000 n 
+0000000209 00000 n 
+0000000321 00000 n 
+0000000514 00000 n 
+0000000582 00000 n 
+0000000869 00000 n 
+0000000928 00000 n 
 trailer
-<< /Size 6 /Root 1 0 R >>
+<<
+/ID 
+[<a6809a10581a737db59da63e8bb7565c><a6809a10581a737db59da63e8bb7565c>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 6 0 R
+/Root 5 0 R
+/Size 9
+>>
 startxref
-767
+1887
 %%EOF

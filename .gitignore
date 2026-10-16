@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment values and local deployment metadata
+.env
+.env.*
+!.env.example
+.vercel

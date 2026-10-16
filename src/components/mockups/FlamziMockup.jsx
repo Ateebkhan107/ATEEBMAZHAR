@@ -128,7 +128,7 @@ export const FlamziMockup = () => {
                     : "bg-black/40 border-white/5 text-slate-200"
                 }`}
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 min-w-0">
                   <span
                     className={`w-3.5 h-3.5 rounded flex items-center justify-center border ${
                       task.done
@@ -138,9 +138,9 @@ export const FlamziMockup = () => {
                   >
                     {task.done && <CheckIcon className="w-2.5 h-2.5" />}
                   </span>
-                  <span className="truncate max-w-[170px]">{task.title}</span>
+                  <span className="truncate min-w-0">{task.title}</span>
                 </div>
-                <span className="text-[10px] text-[#00ff66]">{task.xp}</span>
+                <span className="text-[10px] text-[#00ff66] shrink-0">{task.xp}</span>
               </button>
             ))}
           </div>

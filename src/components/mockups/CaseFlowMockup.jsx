@@ -15,8 +15,8 @@ export const CaseFlowMockup = () => {
   return (
     <div className="w-full bg-[#090b11] border-2 border-[#00ff66]/30 shadow-[0_0_40px_rgba(0,255,102,0.12)] rounded-sm overflow-hidden font-sans text-slate-200">
       {/* Top Header */}
-      <div className="px-4 py-3 bg-[#0d101a] border-b border-[#00ff66]/20 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
+      <div className="px-4 py-3 bg-[#0d101a] border-b border-[#00ff66]/20 flex flex-wrap gap-2 items-center justify-between">
+        <div className="flex flex-wrap items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-[#00ff66] animate-pulse" />
           <span className="font-display font-bold text-white text-sm sm:text-base">
             CASEFLOW // Legal Document Intelligence
@@ -47,7 +47,7 @@ export const CaseFlowMockup = () => {
                   : "bg-[#0f131e] border-white/5 text-slate-400 hover:border-white/20"
               }`}
             >
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap gap-2 items-center justify-between">
                 <span className="text-[10px] text-slate-500">0{idx + 1}</span>
                 {activePipelineStep === idx && (
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66] animate-ping" />
@@ -65,14 +65,14 @@ export const CaseFlowMockup = () => {
         
         {/* Left: Indexed Legal Document Chunks */}
         <div className="md:col-span-5 p-4 sm:p-5 space-y-3 bg-[#0a0c14]">
-          <div className="flex items-center justify-between text-xs font-mono">
+          <div className="flex flex-wrap gap-2 items-center justify-between text-xs font-mono">
             <span className="text-[#00ff66] font-semibold">// INDEXED CORPUS CHUNKS</span>
             <span className="text-slate-400 text-[10px]">MSA_2024.pdf</span>
           </div>
 
           <div className="space-y-2.5 font-mono text-xs">
             <div className="p-3 bg-[#111624] border border-[#00ff66]/40 rounded-sm space-y-1">
-              <div className="flex items-center justify-between text-[10px] text-[#00ff66]">
+              <div className="flex flex-wrap gap-2 items-center justify-between text-[10px] text-[#00ff66]">
                 <span>CHUNK #48 • COSINE: 0.942</span>
                 <span className="bg-[#00ff66]/20 px-1.5 py-0.5 rounded-sm">TOP-1 MATCH</span>
               </div>
@@ -82,7 +82,7 @@ export const CaseFlowMockup = () => {
             </div>
 
             <div className="p-3 bg-[#0d101a] border border-white/5 rounded-sm space-y-1 text-slate-400 opacity-60">
-              <div className="flex items-center justify-between text-[10px]">
+              <div className="flex flex-wrap gap-2 items-center justify-between text-[10px]">
                 <span>CHUNK #52 • COSINE: 0.781</span>
                 <span>MATCH 2</span>
               </div>
@@ -95,7 +95,7 @@ export const CaseFlowMockup = () => {
 
         {/* Right: Context-Grounded AI Answer */}
         <div className="md:col-span-7 p-4 sm:p-5 space-y-4 bg-[#080a10]">
-          <div className="flex items-center justify-between text-xs font-mono">
+          <div className="flex flex-wrap gap-2 items-center justify-between text-xs font-mono">
             <span className="text-slate-400 font-semibold">// VERIFIED AI SYNTHESIS</span>
             <span className="text-emerald-400 text-[11px] font-bold flex items-center gap-1">
               <CheckIcon className="w-3.5 h-3.5" /> Strict Citation Grounding

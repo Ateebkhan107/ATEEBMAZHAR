@@ -1,11 +1,14 @@
+import { createPortal } from "react-dom";
+import useDialog from "../hooks/useDialog";
 import { motion, AnimatePresence } from "framer-motion";
 import { CloseIcon, DownloadIcon } from "./Icons";
 import { personalInfo, experiences, technologiesData } from "../constants";
 
 const ResumeModal = ({ isOpen, onClose }) => {
+  const dialogRef = useDialog(isOpen, onClose);
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <AnimatePresence>
       <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         <motion.div
@@ -17,13 +20,14 @@ const ResumeModal = ({ isOpen, onClose }) => {
         />
 
         <motion.div
+          ref={dialogRef} role="dialog" aria-modal="true" aria-label="Resume" tabIndex={-1}
           initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
           className="relative w-full max-w-3xl max-h-[90vh] bg-[#0c0e14] border-2 border-[#00ff66]/40 shadow-[0_0_60px_rgba(0,255,102,0.25)] rounded-sm overflow-hidden z-10 flex flex-col my-auto text-slate-200"
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 bg-[#08090c] border-b border-[#00ff66]/20 shrink-0">
+          <div className="flex flex-wrap gap-3 items-center justify-between px-6 py-4 bg-[#08090c] border-b border-[#00ff66]/20 shrink-0">
             <div className="flex items-center gap-2.5">
               <span className="w-2.5 h-2.5 rounded-full bg-[#00ff66] animate-pulse" />
               <div>
@@ -45,6 +49,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
                 <span>Download PDF</span>
               </a>
               <button
+                aria-label="Close resume"
                 onClick={onClose}
                 className="text-slate-400 hover:text-[#00ff66] p-1.5 rounded-sm bg-white/5 border border-white/10"
               >
@@ -148,7 +153,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
           </div>
         </motion.div>
       </div>
-    </AnimatePresence>
+    </AnimatePresence>, document.body
   );
 };
 

@@ -1,8 +1,11 @@
+import { useReducedMotion } from "framer-motion";
+import SceneCanvas from "./SceneCanvas";
 import { useRef, useMemo, Suspense } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 const StarField = () => {
+  const reducedMotion = useReducedMotion();
   const ref = useRef();
 
   // Create clean, deterministic star positions (divisible by 3)
@@ -35,6 +38,8 @@ const StarField = () => {
   }, []);
 
   useFrame((state, delta) => {
+    if (reducedMotion) return;
+    delta = Math.min(delta, 0.05);
     if (ref.current) {
       ref.current.rotation.x -= delta * 0.02;
       ref.current.rotation.y -= delta * 0.03;
@@ -70,7 +75,7 @@ const StarField = () => {
 const StarsCanvas = () => {
   return (
     <div className="w-full h-full fixed inset-0 pointer-events-none -z-10 overflow-hidden">
-      <Canvas
+      <SceneCanvas
         camera={{ position: [0, 0, 1], fov: 60 }}
         gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
         dpr={[1, 1.5]}
@@ -78,7 +83,7 @@ const StarsCanvas = () => {
         <Suspense fallback={null}>
           <StarField />
         </Suspense>
-      </Canvas>
+      </SceneCanvas>
     </div>
   );
 };

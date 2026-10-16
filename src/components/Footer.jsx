@@ -2,7 +2,7 @@ import { GithubIcon, LinkedInIcon, ExternalLinkIcon } from "./Icons";
 
 const Footer = () => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   };
 
   return (
