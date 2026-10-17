@@ -1,5 +1,6 @@
+import { useMobileLayout } from "../hooks/usePerformanceMode";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant, fadeIn } from "../utils/motion";
@@ -7,6 +8,7 @@ import { TerminalIcon, CheckIcon } from "./Icons";
 import { playKeySound } from "../utils/sound";
 
 const Experience = () => {
+  const mobile = useMobileLayout();
   const [filter, setFilter] = useState("all");
 
   const filterOptions = [
@@ -32,10 +34,10 @@ const Experience = () => {
           <span>// 03. CAREER TIMELINE</span>
         </div>
         <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
-          Verified Trajectory &amp; Ventures
+          {mobile ? "Experience & ventures" : "Verified Trajectory & Ventures"}
         </h2>
         <p className="mt-2 text-slate-400 font-mono text-xs sm:text-sm">
-          // Documented entrepreneurial leadership, technical responsibilities, and academics
+          {mobile ? "Startups, engineering roles, and education." : "// Documented entrepreneurial leadership, technical responsibilities, and academics"}
         </p>
       </motion.div>
 
@@ -60,8 +62,25 @@ const Experience = () => {
       </div>
 
       {/* Timeline List */}
-      <div className="mt-12 space-y-8 relative before:absolute before:inset-0 before:left-3 sm:before:left-6 before:w-0.5 before:bg-[#00ff66]/20">
-        {filteredExperiences.map((exp, index) => (
+      <div className="experience-list mt-12 space-y-8 relative before:absolute before:inset-0 before:left-3 sm:before:left-6 before:w-0.5 before:bg-[#00ff66]/20">
+        {filteredExperiences.map((exp, index) => mobile ? (
+          <details className="mobile-disclosure experience-disclosure" key={exp.company_name}>
+            <summary>
+              <span className="experience-summary">
+                <span className="experience-meta"><span>{exp.company_name}</span><span>{exp.date}</span></span>
+                <h3>{exp.title}</h3>
+              </span>
+              <span className="disclosure-mark" aria-hidden="true" />
+            </summary>
+            <div className="disclosure-content">
+              <p className="text-xs text-slate-400 mb-3">{exp.type} · {exp.location}</p>
+              <ul className="space-y-2 text-sm text-slate-300 leading-relaxed">
+                {exp.points.map((point) => <li key={point} className="flex gap-2"><CheckIcon className="w-4 h-4 shrink-0 text-[#00ff66] mt-1" /><span>{point}</span></li>)}
+              </ul>
+              <div className="compact-tags mt-3">{exp.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+            </div>
+          </details>
+        ) : (
           <motion.div
             key={index}
             variants={fadeIn("up", "tween", index * 0.1, 0.6)}

@@ -1,5 +1,6 @@
+import { useEnhancedEffects, useMobileLayout } from "../hooks/usePerformanceMode";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { technologiesData } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
@@ -42,6 +43,9 @@ const ICON_MAP = {
 };
 
 const Tech = () => {
+  const enhanced = useEnhancedEffects();
+  const mobile = useMobileLayout();
+  const [detailOpen, setDetailOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedTech, setSelectedTech] = useState(technologiesData[0].items[0]);
 
@@ -67,13 +71,35 @@ const Tech = () => {
           <span>// 04. TECHNICAL STACK</span>
         </div>
         <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
-          Architecture &amp; Core Tooling
+          {mobile ? "Tech stack" : "Architecture & Core Tooling"}
         </h2>
         <p className="mt-2 text-slate-400 font-mono text-xs sm:text-sm">
-          // Battle-tested technologies utilized across production applications and startup platforms
+          {mobile ? "Tap a tool for proficiency and project notes." : "// Battle-tested technologies utilized across production applications and startup platforms"}
         </p>
       </motion.div>
 
+      {mobile ? (
+        <div className="mobile-tech">
+          <label className="mobile-tech-filter font-mono">Browse stack
+            <select value={activeCategory} onChange={(event) => setActiveCategory(event.target.value)} aria-label="Technology category">
+              {categories.map((cat) => <option key={cat.id} value={cat.id}>{cat.label}</option>)}
+            </select>
+          </label>
+          <div className="mobile-tech-grid">
+            {displayedGroups.flatMap((group) => group.items).map((tech) => {
+              const Icon = ICON_MAP[tech.iconType] || CpuIcon;
+              return <button key={tech.name} aria-label={`${tech.name} ${tech.level}`} aria-pressed={selectedTech.name === tech.name}
+                aria-controls="mobile-tech-detail" onClick={() => { setSelectedTech(tech); setDetailOpen(true); }}>
+                <Icon className="w-6 h-6" /><span>{tech.name}</span>
+              </button>;
+            })}
+          </div>
+          <details id="mobile-tech-detail" className="mobile-disclosure" open={detailOpen} onToggle={(event) => setDetailOpen(event.currentTarget.open)}>
+            <summary>{selectedTech.name} · {selectedTech.level}<span className="disclosure-mark" aria-hidden="true" /></summary>
+            <div className="disclosure-content"><p>{selectedTech.description}</p><div className="compact-tags mt-3">{selectedTech.projectsUsed.map((name) => <span key={name}>{name}</span>)}</div></div>
+          </details>
+        </div>
+      ) : <>
       {/* Category Filter Pills */}
       <div className="mt-8 flex flex-wrap gap-2 font-mono text-xs">
         {categories.map((cat) => (
@@ -116,8 +142,8 @@ const Tech = () => {
                       type="button"
                       aria-pressed={isSelected}
                       key={tech.name}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.98 }}
+                      whileHover={enhanced ? { scale: 1.03 } : undefined}
+                      whileTap={enhanced ? { scale: 0.98 } : undefined}
                       onClick={() => {
                         playHoverSound();
                         setSelectedTech(tech);
@@ -146,7 +172,7 @@ const Tech = () => {
         </div>
 
         {/* Right Column: Expandable Technical Inspector HUD */}
-        <div className="lg:col-span-4 sticky top-28">
+        <div className="tech-inspector lg:col-span-4 lg:sticky lg:top-28">
           <div className="p-6 rounded-sm bg-[#090b10] border-2 border-[#00ff66]/30 shadow-[0_0_35px_rgba(0,255,102,0.12)] font-mono text-xs space-y-4">
             {/* Header */}
             <div className="flex items-center justify-between border-b border-[#00ff66]/20 pb-3">
@@ -210,6 +236,7 @@ const Tech = () => {
         </div>
 
       </div>
+      </>}
     </div>
   );
 };

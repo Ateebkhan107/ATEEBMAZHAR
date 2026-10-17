@@ -1,6 +1,6 @@
 import { lazy, useState, useRef } from "react";
-import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
+import { m as motion } from "framer-motion";
+import { useEnhancedEffects, useMobileLayout } from "../hooks/usePerformanceMode";
 import { personalInfo } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant, fadeIn } from "../utils/motion";
@@ -20,6 +20,8 @@ import {
 import { playKeySound, playSuccessSound } from "../utils/sound";
 
 const Contact = () => {
+  const enhanced = useEnhancedEffects();
+  const mobile = useMobileLayout();
   const formRef = useRef();
   const submitting = useRef(false);
   const [formData, setFormData] = useState({
@@ -74,13 +76,13 @@ const Contact = () => {
     setStatus({ type: "", message: "" });
 
     // Only the provider response can confirm a successful submission.
-    emailjs
-      .sendForm(
+    import("@emailjs/browser")
+      .then(({ default: emailjs }) => emailjs.sendForm(
         serviceId,
         templateId,
         formRef.current,
         { publicKey, limitRate: { throttle: 10000 } }
-      )
+      ))
       .then(
         () => {
           submitting.current = false;
@@ -125,7 +127,7 @@ const Contact = () => {
         {/* Left Column: Form & Direct Reach */}
         <motion.div
           variants={fadeIn("right", "tween", 0.2, 0.8)}
-          className="lg:col-span-7 space-y-8"
+          className="contact-content lg:col-span-7 space-y-8"
         >
           {/* Contact Form Card */}
           <div className="p-4 sm:p-8 rounded-sm bg-[#090b10] border-2 border-[#00ff66]/30 shadow-[0_0_40px_rgba(0,255,102,0.12)]">
@@ -155,7 +157,7 @@ const Contact = () => {
                   value={formData.user_name}
                   onChange={handleChange}
                   placeholder="e.g. Alex Mercer"
-                  className={`w-full p-3 rounded-sm bg-[#10131d] border font-mono text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none transition-colors ${
+                  className={`w-full p-3 rounded-sm bg-[#10131d] border font-mono text-base text-slate-100 placeholder:text-slate-600 focus:outline-none transition-colors ${
                     errors.user_name
                       ? "border-red-500 focus:border-red-400"
                       : "border-white/10 focus:border-[#00ff66]"
@@ -185,7 +187,7 @@ const Contact = () => {
                   value={formData.user_email}
                   onChange={handleChange}
                   placeholder="e.g. alex@company.com"
-                  className={`w-full p-3 rounded-sm bg-[#10131d] border font-mono text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none transition-colors ${
+                  className={`w-full p-3 rounded-sm bg-[#10131d] border font-mono text-base text-slate-100 placeholder:text-slate-600 focus:outline-none transition-colors ${
                     errors.user_email
                       ? "border-red-500 focus:border-red-400"
                       : "border-white/10 focus:border-[#00ff66]"
@@ -204,7 +206,7 @@ const Contact = () => {
                   &gt; YOUR_MESSAGE <span className="text-[#00ff66]">*</span>
                 </label>
                 <textarea
-                  rows={5}
+                  rows={mobile ? 3 : 5}
                   id="message"
                   name="message"
                   autoComplete="off"
@@ -215,7 +217,7 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell me about your project, team, or opportunity..."
-                  className={`w-full p-3 rounded-sm bg-[#10131d] border font-mono text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none transition-colors resize-none ${
+                  className={`w-full p-3 rounded-sm bg-[#10131d] border font-mono text-base text-slate-100 placeholder:text-slate-600 focus:outline-none transition-colors resize-none ${
                     errors.message
                       ? "border-red-500 focus:border-red-400"
                       : "border-white/10 focus:border-[#00ff66]"
@@ -264,7 +266,7 @@ const Contact = () => {
           </div>
 
           {/* Direct Social & Connection Badges */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
+          <div className="contact-direct-links grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
             <a
               href={personalInfo.github}
               target="_blank"
@@ -302,9 +304,10 @@ const Contact = () => {
         </motion.div>
 
         {/* Right Column: 3D Digital Globe */}
+        {!mobile && (
         <motion.div
           variants={fadeIn("left", "tween", 0.3, 0.8)}
-          className="lg:col-span-5 flex flex-col items-center justify-center relative"
+          className="contact-telemetry lg:col-span-5 flex flex-col items-center justify-center relative"
         >
           {/* Coordinates Header */}
           <div className="w-full max-w-sm mb-4 p-3 rounded-sm bg-black/40 border border-[#00ff66]/20 backdrop-blur-md font-mono text-xs flex flex-wrap gap-2 items-center justify-between">
@@ -315,12 +318,15 @@ const Contact = () => {
             <span className="text-slate-400">22.5726° N, 88.3639° E</span>
           </div>
 
-          <DeferredScene scene={EarthCanvas} className="relative w-full h-[340px] sm:h-[440px]" />
+          <DeferredScene scene={EarthCanvas} className="contact-globe relative w-full h-[160px] md:h-[440px]" fallback={
+            <div className="static-globe"><svg viewBox="0 0 240 140" fill="none" aria-hidden="true"><g stroke="#00ff66" strokeOpacity=".45"><circle cx="120" cy="70" r="62"/><ellipse cx="120" cy="70" rx="28" ry="62"/><ellipse cx="120" cy="70" rx="62" ry="24"/><path d="M58 70h124M120 8v124"/></g><circle cx="155" cy="47" r="4" fill="#00ff66"/></svg></div>
+          } />
 
           <div className="mt-4 font-mono text-[11px] text-slate-500 text-center">
-            [ Interactive Holographic Coordinates • Drag to Rotate ]
+            {enhanced ? "[ Interactive Holographic Coordinates • Drag to Rotate ]" : "KOLKATA → CONNECTED WORLDWIDE"}
           </div>
         </motion.div>
+        )}
 
       </div>
     </div>

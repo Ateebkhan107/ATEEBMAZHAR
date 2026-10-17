@@ -151,7 +151,7 @@ const HeroCoreCanvas = () => {
       <div className="absolute top-4 right-4 z-10 hidden sm:flex flex-col items-end gap-1 font-mono text-[10px] text-[#00ff66]/70 pointer-events-none bg-black/40 backdrop-blur-md px-3 py-2 border border-[#00ff66]/20 rounded-sm">
         <span className="flex items-center gap-1.5 text-[#00ff66]">
           <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66] animate-ping" />
-          CORE_ONLINE // 60 FPS
+          CORE_ONLINE // ADAPTIVE
         </span>
         <span className="text-slate-400">ROTATION: AUTO_SYNC</span>
         <span className="text-slate-400">PHYSICS: LERP_DAMPED</span>
@@ -159,8 +159,8 @@ const HeroCoreCanvas = () => {
 
       <SceneCanvas
         camera={{ position: [0, 0, 7.2], fov: 42 }}
-        dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       >
         <Suspense fallback={null}>
           <TechSculpture />

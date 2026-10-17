@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import useDialog from "../hooks/useDialog";
-import { motion, AnimatePresence } from "framer-motion";
+import { m as motion, AnimatePresence } from "framer-motion";
 import { 
   CloseIcon, 
   ExternalLinkIcon, 

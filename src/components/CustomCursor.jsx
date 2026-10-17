@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, useSpring } from "framer-motion";
+import { m as motion, useSpring } from "framer-motion";
 
 const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);

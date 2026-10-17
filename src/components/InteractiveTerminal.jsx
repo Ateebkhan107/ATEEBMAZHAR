@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import useDialog from "../hooks/useDialog";
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m as motion, AnimatePresence } from "framer-motion";
 import { CloseIcon, TerminalIcon } from "./Icons";
 import { personalInfo, projects } from "../constants";
 import { playKeySound, playSuccessSound } from "../utils/sound";
@@ -28,7 +28,7 @@ const InteractiveTerminal = ({ isOpen, onClose }) => {
   }, [isOpen]);
 
   useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    terminalEndRef.current?.scrollIntoView({ behavior: window.matchMedia("(max-width: 767px), (prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   }, [history]);
 
   const handleCommand = (rawCmd) => {

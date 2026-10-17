@@ -43,9 +43,9 @@ export default defineConfig(({ mode }) => ({
       output: {
         codeSplitting: {
           groups: [
+            { name: 'react-vendor', test: /node_modules\/(?:react|react-dom|scheduler)\//, priority: 40 },
             { name: 'three-core', test: /node_modules\/three\//, priority: 20 },
             { name: 'three-react', test: /node_modules\/(?:@react-three|three-stdlib)\//, priority: 10 },
-            { name: 'motion', test: /node_modules\/(?:framer-motion|motion-dom|motion-utils)\// },
           ],
         },
       },

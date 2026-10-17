@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { lazy, Suspense, useState } from "react";
+import { m as motion } from "framer-motion";
 import { projects } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant, fadeIn } from "../utils/motion";
-import { PrepziiMockup } from "./mockups/PrepziiMockup";
-import { CaseFlowMockup } from "./mockups/CaseFlowMockup";
-import { SkaleKraftMockup } from "./mockups/SkaleKraftMockup";
-import { FlamziMockup } from "./mockups/FlamziMockup";
-import CaseStudyModal from "./CaseStudyModal";
+import MobileProjects from "./MobileProjects";
+import { useMobileLayout } from "../hooks/usePerformanceMode";
+const ProjectDemoModal = lazy(() => import("./ProjectDemoModal"));
+import ProjectPreview from "./ProjectPreview";
+const CaseStudyModal = lazy(() => import("./CaseStudyModal"));
 import { 
   GithubIcon, 
   ExternalLinkIcon, 
@@ -18,22 +18,9 @@ import {
 import { playSuccessSound } from "../utils/sound";
 
 const Works = () => {
+  const mobile = useMobileLayout();
+  const [selectedDemo, setSelectedDemo] = useState(null);
   const [selectedCaseStudy, setSelectedCaseStudy] = useState(null);
-
-  const renderMockup = (id) => {
-    switch (id) {
-      case "prepzii":
-        return <PrepziiMockup />;
-      case "caseflow":
-        return <CaseFlowMockup />;
-      case "skalekraft":
-        return <SkaleKraftMockup />;
-      case "flamzi":
-        return <FlamziMockup />;
-      default:
-        return null;
-    }
-  };
 
   return (
     <div className="relative w-full">
@@ -44,15 +31,15 @@ const Works = () => {
           <span>// 02. FEATURED PROJECTS</span>
         </div>
         <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
-          Flagship Architectures &amp; Products
+          {mobile ? "Selected projects" : "Flagship Architectures & Products"}
         </h2>
         <p className="mt-2 text-slate-400 font-mono text-xs sm:text-sm">
-          // Large editorial showcases with real architectures and verified implementations
+          {mobile ? "Four products. Swipe to explore the work." : "// Selected products, engineering decisions, and interactive interface previews"}
         </p>
       </motion.div>
 
       {/* Projects Stack */}
-      <div className="mt-14 space-y-24">
+      {mobile ? <MobileProjects onCaseStudy={setSelectedCaseStudy} onDemo={setSelectedDemo} /> : <div className="projects-stack mt-10 md:mt-14 space-y-10 md:space-y-24">
         {projects.map((project, index) => {
           const isFlagship = project.id === "prepzii";
           const isEven = index % 2 === 0;
@@ -62,7 +49,7 @@ const Works = () => {
               key={project.id}
               id={`project-${project.id}`}
               variants={fadeIn("up", "spring", 0.15 * index, 0.75)}
-              className={`p-4 sm:p-10 rounded-sm bg-[#0a0c13] border-2 ${
+              className={`project-card p-4 sm:p-10 rounded-sm bg-[#0a0c13] border-2 ${
                 isFlagship ? "border-[#00ff66]/50 shadow-[0_0_50px_rgba(0,255,102,0.15)]" : "border-[#00ff66]/20"
               } transition-all duration-300`}
             >
@@ -98,7 +85,7 @@ const Works = () => {
                   </p>
 
                   {/* Highlights Bullet List */}
-                  <div className="space-y-2 pt-1">
+                  <div className="project-highlights space-y-2 pt-1">
                     <span className="font-mono text-xs text-[#00ff66] font-semibold uppercase tracking-wider block">
                       Key Highlights &amp; Capabilities:
                     </span>
@@ -165,25 +152,22 @@ const Works = () => {
 
                 {/* Right Interactive Mockup Column */}
                 <div className={`${project.id === "flamzi" ? "lg:col-span-5" : "lg:col-span-7"} ${!isEven && project.id !== "flamzi" ? "lg:order-1" : ""}`}>
-                  {renderMockup(project.id) || (
-                    <div className="p-8 bg-[#090b10] border border-white/10 rounded-sm text-center font-mono text-xs text-slate-400">
-                      [Interactive Preview Dossier]
-                    </div>
-                  )}
+                  <ProjectPreview project={project} />
                 </div>
 
               </div>
             </motion.div>
           );
         })}
-      </div>
+      </div>}
+      {selectedDemo && <Suspense fallback={<p role="status">Opening preview…</p>}><ProjectDemoModal project={selectedDemo} onClose={() => setSelectedDemo(null)} /></Suspense>}
 
       {/* Case Study Modal */}
       {selectedCaseStudy && (
-        <CaseStudyModal
+        <Suspense fallback={<p role="status">Opening case study…</p>}><CaseStudyModal
           project={selectedCaseStudy}
           onClose={() => setSelectedCaseStudy(null)}
-        />
+        /></Suspense>
       )}
     </div>
   );

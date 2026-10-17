@@ -1,0 +1,142 @@
+[
+  {
+    "width": 320,
+    "height": 4600,
+    "overflow": false,
+    "sections": [
+      {
+        "id": "hero",
+        "height": 568
+      },
+      {
+        "id": "about",
+        "height": 560
+      },
+      {
+        "id": "projects",
+        "height": 937
+      },
+      {
+        "id": "experience",
+        "height": 745
+      },
+      {
+        "id": "tech",
+        "height": 624
+      },
+      {
+        "id": "contact",
+        "height": 831
+      }
+    ],
+    "carousel": "All four projects, keyboard, native touch swipes, vertical touch scrolling, case studies and preview pass",
+    "disclosures": "All expand without overflow",
+    "nestedVerticalScrollers": [],
+    "errors": []
+  },
+  {
+    "width": 375,
+    "height": 4270,
+    "overflow": false,
+    "sections": [
+      {
+        "id": "hero",
+        "height": 563
+      },
+      {
+        "id": "about",
+        "height": 462
+      },
+      {
+        "id": "projects",
+        "height": 935
+      },
+      {
+        "id": "experience",
+        "height": 631
+      },
+      {
+        "id": "tech",
+        "height": 565
+      },
+      {
+        "id": "contact",
+        "height": 779
+      }
+    ],
+    "carousel": "All four projects, keyboard, native touch swipes, vertical touch scrolling, case studies and preview pass",
+    "disclosures": "All expand without overflow",
+    "nestedVerticalScrollers": [],
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 4193,
+    "overflow": false,
+    "sections": [
+      {
+        "id": "hero",
+        "height": 542
+      },
+      {
+        "id": "about",
+        "height": 462
+      },
+      {
+        "id": "projects",
+        "height": 895
+      },
+      {
+        "id": "experience",
+        "height": 631
+      },
+      {
+        "id": "tech",
+        "height": 565
+      },
+      {
+        "id": "contact",
+        "height": 763
+      }
+    ],
+    "carousel": "All four projects, keyboard, native touch swipes, vertical touch scrolling, case studies and preview pass",
+    "disclosures": "All expand without overflow",
+    "nestedVerticalScrollers": [],
+    "errors": []
+  },
+  {
+    "width": 430,
+    "height": 4144,
+    "overflow": false,
+    "sections": [
+      {
+        "id": "hero",
+        "height": 533
+      },
+      {
+        "id": "about",
+        "height": 462
+      },
+      {
+        "id": "projects",
+        "height": 898
+      },
+      {
+        "id": "experience",
+        "height": 631
+      },
+      {
+        "id": "tech",
+        "height": 565
+      },
+      {
+        "id": "contact",
+        "height": 739
+      }
+    ],
+    "carousel": "All four projects, keyboard, native touch swipes, vertical touch scrolling, case studies and preview pass",
+    "disclosures": "All expand without overflow",
+    "nestedVerticalScrollers": [],
+    "errors": []
+  }
+]

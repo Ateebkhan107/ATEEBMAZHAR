@@ -157,6 +157,7 @@ export const technologiesData = [
 export const projects = [
   {
     id: "prepzii",
+    screenshot: true,
     name: "Prepzii",
     badge: "FLAGSHIP SaaS",
     category: "EdTech / SaaS / AI",
@@ -229,6 +230,7 @@ export const projects = [
   },
   {
     id: "skalekraft",
+    screenshot: true,
     name: "SkaleKraft",
     badge: "LIVE PRODUCTION BRAND",
     category: "Digital Agency / Web Development / Brand Experience",

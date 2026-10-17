@@ -10,7 +10,7 @@ const StarField = () => {
 
   // Create clean, deterministic star positions (divisible by 3)
   const [positions, colors] = useMemo(() => {
-    const count = 1200;
+    const count = 500;
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
     const colorA = new THREE.Color("#00ff66");
@@ -78,7 +78,7 @@ const StarsCanvas = () => {
       <SceneCanvas
         camera={{ position: [0, 0, 1], fov: 60 }}
         gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
-        dpr={[1, 1.5]}
+        dpr={1}
       >
         <Suspense fallback={null}>
           <StarField />

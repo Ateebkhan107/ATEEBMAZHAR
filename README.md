@@ -1,6 +1,6 @@
 # Ateeb Mazhar - Portfolio
 
-React 19 + Vite, Tailwind CSS, Framer Motion, and React Three Fiber. The original visual identity and animated scenes are retained.
+React 19 + Vite, Tailwind CSS, Framer Motion, and React Three Fiber. The dark neon-green identity and desktop scenes are retained, with a lightweight mobile experience.
 
 ## Local development and verification
 
@@ -22,7 +22,7 @@ The preview serves `dist`, not source files. There is no TypeScript/typecheck sc
 3. Review optional environment settings below, deploy, and test the generated preview URL before making it the production domain. Git pushes to the configured production branch (currently `main`) trigger production builds through the Vercel Git integration.
 4. After the production domain is known, set `SITE_URL` to that exact HTTPS origin in Vercel and redeploy. Optionally set `SOCIAL_IMAGE_URL` to an actual public HTTPS social preview image. Do not use a temporary preview URL as the canonical production origin.
 
-`vercel.json` supplies SPA rewrites for BrowserRouter refreshes and basic response security headers. Existing static files take precedence. The Vite defaults supply the build/output settings, so there are no conflicting command overrides in this file. See [Vercel's Vite documentation](https://vercel.com/docs/frameworks/frontend/vite).
+`vercel.json` supplies a static SPA fallback, basic response security headers, immutable caching for hashed build assets, and shorter caching for project images and fonts. Navigation uses native section anchors. Existing static files take precedence. The Vite defaults supply the build/output settings, so there are no conflicting command overrides in this file. See [Vercel's Vite documentation](https://vercel.com/docs/frameworks/frontend/vite).
 
 ## Environment and contact form
 
@@ -42,5 +42,35 @@ Actual delivery, account ownership, template status, quotas, sender configuratio
 - Confirm the profile at `github.com/ateebmazhar` is intended; the repository owner is `Ateebkhan107`. The audit did not change either identity.
 - Seven npm advisories remain in the Tailwind 3 development toolchain (five high, two moderate); production dependency audit reports zero. The suggested force fix migrates to Tailwind 4, which needs a separate visual regression review. Do not run `npm audit fix --force` blindly. Build only trusted source and configuration.
 - Three.js emits a `THREE.Clock` deprecation warning through React Three Fiber. It does not prevent rendering. The deferred Three.js core chunk remains above Vite's 500 KB warning threshold; do not suppress the warning or remove effects simply to hide it.
-- Fonts are loaded from Google Fonts with local/system fallbacks. No private backend credentials are needed for this static application.
+- Fonts are self-hosted Latin WOFF2 subsets with `font-display: swap` and system fallbacks. Licenses are included in `public/fonts`. No private backend credentials are needed for this static application.
 - See [PRODUCTION_READINESS.md](PRODUCTION_READINESS.md) for completed checks and unverified items.
+
+## Performance verification
+
+See [PERFORMANCE_AUDIT.md](PERFORMANCE_AUDIT.md) for the measured before/after
+results, mobile changes, remaining limits, and push commands.
+
+The production browser suite checks all eight requested widths, mobile asset
+requests, images, menus, dialogs, project demos, filters, mocked contact responses,
+and adaptive device modes. It never sends an external email. Install the optional
+QA runner without changing the application lockfile:
+
+```sh
+npm install --no-save --package-lock=false playwright
+npx playwright install chromium
+# In one terminal:
+npm run build
+npm run preview -- --host 127.0.0.1 --port 4173
+# In another terminal:
+npm run verify:production
+```
+
+`PORTFOLIO_URL`, `BROWSER_EXECUTABLE_PATH`, `PLAYWRIGHT_MODULE_PATH`, and
+`PERF_REPORT_DIR` optionally customize the runner. Results and screenshots default
+to the system temporary directory under `portfolio-verification`.
+
+The compact mobile layout has a dedicated check: `npm run verify:mobile`.
+It covers 320, 375, 390, and 430 px, all four carousel projects, keyboard controls,
+native horizontal touch swipes, vertical touch scrolling over the carousel,
+expandable content, contact validation, and nested-scroll/overflow regressions.
+See `MOBILE_LAYOUT_AUDIT.md` for the before/after page-height measurements.

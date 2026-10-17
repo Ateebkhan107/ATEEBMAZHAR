@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+import { useMobileLayout } from "../hooks/usePerformanceMode";
+import ResponsiveDisclosure from "./ResponsiveDisclosure";
+import { m as motion } from "framer-motion";
 import { personalInfo } from "../constants";
 import { 
   SparklesIcon, 
@@ -38,6 +40,7 @@ const PILLARS = [
 ];
 
 const About = () => {
+  const mobile = useMobileLayout();
   return (
     <div className="relative w-full">
       {/* Section Header */}
@@ -47,10 +50,10 @@ const About = () => {
           <span>// 01. ABOUT ME</span>
         </div>
         <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
-          Curious Mind. Ambitious Builder.
+          {mobile ? "Building with purpose." : "Curious Mind. Ambitious Builder."}
         </h2>
         <p className="mt-2 text-slate-400 font-mono text-xs sm:text-sm">
-          // Bridging technical rigor with thoughtful product craftsmanship
+          {mobile ? "A little about the person behind the products." : "// Bridging technical rigor with thoughtful product craftsmanship"}
         </p>
       </motion.div>
 
@@ -68,6 +71,8 @@ const About = () => {
               <span className="text-[#00ff66] font-mono font-medium">Techno India University, Kolkata</span>, graduating in{" "}
               <span className="text-white font-semibold">2027</span>.
             </p>
+            <p className="mobile-about-summary">Co-founder at Prepzii and founder of SkaleKraft, building full-stack, AI, and mobile products.</p>
+            <ResponsiveDisclosure label="My story & approach">
             <p>
               My journey is fueled by a relentless drive to build products that solve real problems. As a co-founder of{" "}
               <span className="text-[#00ff66] font-mono font-bold">Prepzii</span>, I lead full-stack development on an AI-powered EdTech platform engineered to give JEE and NEET aspirants an unfair advantage through real-time exam simulations, cut-off forecasting, and intelligent doubt resolution.
@@ -75,9 +80,11 @@ const About = () => {
             <p className="text-slate-400 text-sm sm:text-base">
               I believe great software lives at the intersection of architectural discipline and creative intuition. Whether constructing a legal document retrieval pipeline (RAG), launching responsive digital brand websites at SkaleKraft, or crafting offline-first Flutter mobile apps, my standard remains constant: reliable engineering, clean aesthetics, and measurable value.
             </p>
+            </ResponsiveDisclosure>
           </div>
 
           {/* Core Engineering Pillars */}
+          <ResponsiveDisclosure label="Engineering focus · 4 disciplines">
           <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {PILLARS.map((p) => {
               const Icon = p.icon;
@@ -102,9 +109,11 @@ const About = () => {
               );
             })}
           </div>
+          </ResponsiveDisclosure>
         </motion.div>
 
         {/* Right Column: Terminal Dossier & Hardware HUD */}
+        <ResponsiveDisclosure label="Developer profile & milestones">
         <motion.div 
           variants={fadeIn("left", "tween", 0.3, 0.8)}
           className="lg:col-span-5 space-y-6"
@@ -193,6 +202,7 @@ const About = () => {
           </div>
 
         </motion.div>
+        </ResponsiveDisclosure>
 
       </div>
     </div>

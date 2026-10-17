@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import useDialog from "../hooks/useDialog";
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m as motion, AnimatePresence } from "framer-motion";
 import { 
   CommandIcon, 
   CloseIcon, 
@@ -110,7 +110,7 @@ const CommandPalette = ({ isOpen, onClose, onOpenTerminal, onOpenResume }) => {
     onClose();
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      el.scrollIntoView({ behavior: window.matchMedia("(max-width: 767px), (prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     }
   };
 

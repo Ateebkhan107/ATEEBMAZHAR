@@ -28,7 +28,7 @@ const CyberGlobe = () => {
     <group>
       {/* Main Wireframe Globe */}
       <mesh ref={globeRef}>
-        <sphereGeometry args={[2.5, 48, 48]} />
+        <sphereGeometry args={[2.5, 32, 24]} />
         <meshStandardMaterial
           color="#06080d"
           wireframe
@@ -76,8 +76,8 @@ const EarthCanvas = () => {
     <div className="w-full h-[340px] sm:h-[440px] relative">
       <SceneCanvas
         camera={{ position: [0, 0, 6.8], fov: 45 }}
-        dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       >
         <Suspense fallback={null}>
           <OrbitControls

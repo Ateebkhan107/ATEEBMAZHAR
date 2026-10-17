@@ -1,23 +1,26 @@
-import { MotionConfig } from "framer-motion";
+import { LazyMotion, MotionConfig } from "framer-motion";
 const StarsCanvas = lazy(() => import("./components/canvas/Stars"));
 import { lazy, Suspense, useState, useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
-import {
-  Navbar,
-  Hero,
-  About,
-  Works,
-  Experience,
-  Tech,
-  Contact,
-  Footer,
-  CommandPalette,
-  InteractiveTerminal,
-  ResumeModal,
-  CustomCursor,
-} from "./components";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Footer from "./components/Footer";
+import DeferredScene from "./components/DeferredScene";
+import { PerformanceContext, useDeviceEffects } from "./hooks/usePerformanceMode";
+const Works = lazy(() => import("./components/Works"));
+const Experience = lazy(() => import("./components/Experience"));
+const Tech = lazy(() => import("./components/Tech"));
+const Contact = lazy(() => import("./components/Contact"));
+const CommandPalette = lazy(() => import("./components/CommandPalette"));
+const InteractiveTerminal = lazy(() => import("./components/InteractiveTerminal"));
+const ResumeModal = lazy(() => import("./components/ResumeModal"));
+const CustomCursor = lazy(() => import("./components/CustomCursor"));
+const loadMotionFeatures = () => import("./utils/motionFeatures").then((m) => m.default);
+const sectionFallback = (id) => <section id={id} className="section-placeholder" aria-label={`Loading ${id}`} />;
+
 
 const App = () => {
+  const enhanced = useDeviceEffects();
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -40,15 +43,18 @@ const App = () => {
   }, []);
 
   return (
-    <MotionConfig reducedMotion="user">
-    <BrowserRouter>
-      <div className="relative z-0 bg-[#08090c] text-slate-100 min-h-screen selection:bg-[#00ff66] selection:text-black">
+    <PerformanceContext.Provider value={enhanced}>
+    <MotionConfig reducedMotion={enhanced ? "user" : "always"}>
+    <LazyMotion features={loadMotionFeatures} strict>
+
+      <div data-effects={enhanced ? "full" : "light"} className="relative z-0 bg-[#08090c] text-slate-100 min-h-screen selection:bg-[#00ff66] selection:text-black">
         {/* Background Ambient Stars Field (Fixed behind all content) */}
-        <Suspense fallback={null}><StarsCanvas /></Suspense>
+        {enhanced && <DeferredScene scene={StarsCanvas} className="fixed inset-0 pointer-events-none" />}
 
         {/* Sleek Custom Cyber Cursor */}
-        <CustomCursor />
+        {enhanced && <Suspense fallback={null}><CustomCursor /></Suspense>}
 
+        <div id="nav-sentinel" className="absolute top-0 h-10 w-px" aria-hidden="true" />
         {/* Global Navigation Bar */}
         <Navbar
           onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
@@ -68,41 +74,43 @@ const App = () => {
           <About />
 
           {/* 3. Featured Projects (Flagship) */}
-          <Works />
+          <Suspense fallback={sectionFallback("projects")}> <Works /> </Suspense>
 
           {/* 4. Career Experience Timeline */}
-          <Experience />
+          <Suspense fallback={sectionFallback("experience")}> <Experience /> </Suspense>
 
           {/* 5. Technology Constellation */}
-          <Tech />
+          <Suspense fallback={sectionFallback("tech")}> <Tech /> </Suspense>
 
           {/* 6. Contact & Holographic Telemetry */}
-          <Contact />
+          <Suspense fallback={sectionFallback("contact")}> <Contact /> </Suspense>
 
           {/* Footer */}
           <Footer />
         </main>
 
         {/* Modals & Overlays */}
-        <CommandPalette
+        {isCommandPaletteOpen && <Suspense fallback={<div role="status" className="overlay-loading">Opening…</div>}> <CommandPalette
           isOpen={isCommandPaletteOpen}
           onClose={() => setIsCommandPaletteOpen(false)}
           onOpenTerminal={() => setIsTerminalOpen(true)}
           onOpenResume={() => setIsResumeOpen(true)}
-        />
+        /> </Suspense>}
 
-        <InteractiveTerminal
+        {isTerminalOpen && <Suspense fallback={<div role="status" className="overlay-loading">Opening…</div>}> <InteractiveTerminal
           isOpen={isTerminalOpen}
           onClose={() => setIsTerminalOpen(false)}
-        />
+        /> </Suspense>}
 
-        <ResumeModal
+        {isResumeOpen && <Suspense fallback={<div role="status" className="overlay-loading">Opening…</div>}> <ResumeModal
           isOpen={isResumeOpen}
           onClose={() => setIsResumeOpen(false)}
-        />
+        /> </Suspense>}
       </div>
-    </BrowserRouter>
+
+    </LazyMotion>
     </MotionConfig>
+    </PerformanceContext.Provider>
   );
 };
 

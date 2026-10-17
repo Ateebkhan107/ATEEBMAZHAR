@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+
 import { navLinks } from "../constants";
 import { styles } from "../styles";
 import { 
@@ -12,19 +12,39 @@ import {
 import { setSoundEnabled, getSoundEnabled, playKeySound, playSuccessSound } from "../utils/sound";
 
 const Navbar = ({ onOpenCommandPalette, onOpenTerminal }) => {
+  const menuRef = useRef(null);
+  const toggleRef = useRef(null);
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [soundActive, setSoundActive] = useState(getSoundEnabled());
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const sentinel = document.getElementById("nav-sentinel");
+    const observer = new IntersectionObserver(([entry]) => setScrolled(!entry.isIntersecting));
+    if (sentinel) observer.observe(sentinel);
+    return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!toggle) return;
+    const dismiss = (event) => {
+      if (event.key === "Escape") { setToggle(false); toggleRef.current?.focus(); }
+    };
+    const outside = (event) => {
+      if (!menuRef.current?.contains(event.target) && !toggleRef.current?.contains(event.target)) setToggle(false);
+    };
+    const media = window.matchMedia("(min-width: 1280px)");
+    const resize = () => { if (media.matches) setToggle(false); };
+    document.addEventListener("keydown", dismiss);
+    document.addEventListener("pointerdown", outside);
+    media.addEventListener("change", resize);
+    return () => {
+      document.removeEventListener("keydown", dismiss);
+      document.removeEventListener("pointerdown", outside);
+      media.removeEventListener("change", resize);
+    };
+  }, [toggle]);
 
   const toggleSound = () => {
     const next = !soundActive;
@@ -44,12 +64,12 @@ const Navbar = ({ onOpenCommandPalette, onOpenTerminal }) => {
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         
         {/* Brand Logo */}
-        <Link
-          to="/"
+        <a
+          href="#hero"
           className="flex items-center gap-2.5 group"
           onClick={() => {
             setActive("");
-            window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+            window.scrollTo({ top: 0, behavior: window.matchMedia("(max-width: 767px), (prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
           }}
         >
           <div className="w-8 h-8 rounded-sm bg-[#00ff66]/10 border border-[#00ff66]/40 flex items-center justify-center group-hover:border-[#00ff66] transition-colors">
@@ -66,7 +86,7 @@ const Navbar = ({ onOpenCommandPalette, onOpenTerminal }) => {
               software_engineer.sys
             </span>
           </div>
-        </Link>
+        </a>
 
         {/* Desktop Nav Links */}
         <ul className="list-none hidden xl:flex flex-row items-center gap-8">
@@ -156,6 +176,7 @@ const Navbar = ({ onOpenCommandPalette, onOpenTerminal }) => {
           </button>
 
           <button
+            ref={toggleRef}
             className="p-2 text-[#00ff66] font-mono text-lg bg-[#0e121a] border border-[#00ff66]/30 rounded-sm"
             onClick={() => {
               playKeySound();
@@ -173,8 +194,8 @@ const Navbar = ({ onOpenCommandPalette, onOpenTerminal }) => {
 
       {/* Mobile Menu Dropdown */}
       {toggle && (
-        <div id="mobile-navigation" className="xl:hidden absolute top-full left-0 w-full bg-[#0a0c13] border-b border-[#00ff66]/30 shadow-2xl p-6 z-50">
-          <ul className="flex flex-col gap-4">
+        <div ref={menuRef} id="mobile-navigation" className="xl:hidden absolute top-full left-0 w-full bg-[#0a0c13] border-b border-[#00ff66]/30 shadow-2xl p-6 z-50">
+          <ul className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <li
                 key={link.id}
@@ -186,7 +207,7 @@ const Navbar = ({ onOpenCommandPalette, onOpenTerminal }) => {
               >
                 <a
                   href={`#${link.id}`}
-                  className="flex items-center justify-between text-slate-200 hover:text-[#00ff66] py-2 border-b border-white/5"
+                  className="min-h-11 flex items-center justify-between text-slate-200 hover:text-[#00ff66] py-2 border-b border-white/5"
                 >
                   <span>// {link.code}. {link.title}</span>
                   <span className="text-[#00ff66] text-xs font-mono">→</span>

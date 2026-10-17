@@ -1,0 +1,649 @@
+{
+  "viewports": [
+    {
+      "width": 320,
+      "canvases": 0,
+      "js": [
+        {
+          "name": "rolldown-runtime-Cyuzqnbw.js",
+          "bytes": 826
+        },
+        {
+          "name": "index-CScEgjcL.js",
+          "bytes": 63718
+        },
+        {
+          "name": "reduced-motion-9cbmD0Xv.js",
+          "bytes": 269
+        },
+        {
+          "name": "is-svg-component-CbNyC13T.js",
+          "bytes": 30646
+        },
+        {
+          "name": "proxy-BAOpz7Bz.js",
+          "bytes": 8019
+        },
+        {
+          "name": "react-vendor-qie9gJa6.js",
+          "bytes": 189646
+        },
+        {
+          "name": "resolve-elements-B77bWpQo.js",
+          "bytes": 248
+        },
+        {
+          "name": "Works-Bpe4X37J.js",
+          "bytes": 7764
+        },
+        {
+          "name": "Experience-BwxHAVSJ.js",
+          "bytes": 3798
+        },
+        {
+          "name": "Tech-BpZxGWVm.js",
+          "bytes": 5626
+        },
+        {
+          "name": "Contact-Bbz-m0yp.js",
+          "bytes": 10651
+        },
+        {
+          "name": "JSAnimation-BzVCatJ7.js",
+          "bytes": 13646
+        },
+        {
+          "name": "motionFeatures-B8HW130r.js",
+          "bytes": 23635
+        },
+        {
+          "name": "is-html-element-CtocdrOo.js",
+          "bytes": 115
+        }
+      ],
+      "height": 14459,
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "canvases": 0,
+      "js": [
+        {
+          "name": "index-CScEgjcL.js",
+          "bytes": 63718
+        },
+        {
+          "name": "rolldown-runtime-Cyuzqnbw.js",
+          "bytes": 826
+        },
+        {
+          "name": "reduced-motion-9cbmD0Xv.js",
+          "bytes": 269
+        },
+        {
+          "name": "resolve-elements-B77bWpQo.js",
+          "bytes": 248
+        },
+        {
+          "name": "proxy-BAOpz7Bz.js",
+          "bytes": 8019
+        },
+        {
+          "name": "is-svg-component-CbNyC13T.js",
+          "bytes": 30646
+        },
+        {
+          "name": "react-vendor-qie9gJa6.js",
+          "bytes": 189646
+        },
+        {
+          "name": "Works-Bpe4X37J.js",
+          "bytes": 7764
+        },
+        {
+          "name": "Experience-BwxHAVSJ.js",
+          "bytes": 3798
+        },
+        {
+          "name": "Tech-BpZxGWVm.js",
+          "bytes": 5626
+        },
+        {
+          "name": "Contact-Bbz-m0yp.js",
+          "bytes": 10651
+        },
+        {
+          "name": "JSAnimation-BzVCatJ7.js",
+          "bytes": 13646
+        },
+        {
+          "name": "motionFeatures-B8HW130r.js",
+          "bytes": 23635
+        },
+        {
+          "name": "is-html-element-CtocdrOo.js",
+          "bytes": 115
+        }
+      ],
+      "height": 13548,
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "canvases": 0,
+      "js": [
+        {
+          "name": "rolldown-runtime-Cyuzqnbw.js",
+          "bytes": 826
+        },
+        {
+          "name": "reduced-motion-9cbmD0Xv.js",
+          "bytes": 269
+        },
+        {
+          "name": "index-CScEgjcL.js",
+          "bytes": 63718
+        },
+        {
+          "name": "resolve-elements-B77bWpQo.js",
+          "bytes": 248
+        },
+        {
+          "name": "proxy-BAOpz7Bz.js",
+          "bytes": 8019
+        },
+        {
+          "name": "is-svg-component-CbNyC13T.js",
+          "bytes": 30646
+        },
+        {
+          "name": "react-vendor-qie9gJa6.js",
+          "bytes": 189646
+        },
+        {
+          "name": "Works-Bpe4X37J.js",
+          "bytes": 7764
+        },
+        {
+          "name": "Experience-BwxHAVSJ.js",
+          "bytes": 3798
+        },
+        {
+          "name": "Tech-BpZxGWVm.js",
+          "bytes": 5626
+        },
+        {
+          "name": "Contact-Bbz-m0yp.js",
+          "bytes": 10651
+        },
+        {
+          "name": "is-html-element-CtocdrOo.js",
+          "bytes": 115
+        },
+        {
+          "name": "motionFeatures-B8HW130r.js",
+          "bytes": 23635
+        },
+        {
+          "name": "JSAnimation-BzVCatJ7.js",
+          "bytes": 13646
+        }
+      ],
+      "height": 13358,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "canvases": 0,
+      "js": [
+        {
+          "name": "index-CScEgjcL.js",
+          "bytes": 63718
+        },
+        {
+          "name": "rolldown-runtime-Cyuzqnbw.js",
+          "bytes": 826
+        },
+        {
+          "name": "reduced-motion-9cbmD0Xv.js",
+          "bytes": 269
+        },
+        {
+          "name": "resolve-elements-B77bWpQo.js",
+          "bytes": 248
+        },
+        {
+          "name": "proxy-BAOpz7Bz.js",
+          "bytes": 8019
+        },
+        {
+          "name": "is-svg-component-CbNyC13T.js",
+          "bytes": 30646
+        },
+        {
+          "name": "react-vendor-qie9gJa6.js",
+          "bytes": 189646
+        },
+        {
+          "name": "Works-Bpe4X37J.js",
+          "bytes": 7764
+        },
+        {
+          "name": "Experience-BwxHAVSJ.js",
+          "bytes": 3798
+        },
+        {
+          "name": "Tech-BpZxGWVm.js",
+          "bytes": 5626
+        },
+        {
+          "name": "Contact-Bbz-m0yp.js",
+          "bytes": 10651
+        },
+        {
+          "name": "is-html-element-CtocdrOo.js",
+          "bytes": 115
+        },
+        {
+          "name": "JSAnimation-BzVCatJ7.js",
+          "bytes": 13646
+        },
+        {
+          "name": "motionFeatures-B8HW130r.js",
+          "bytes": 23635
+        }
+      ],
+      "height": 13239,
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "canvases": 0,
+      "js": [
+        {
+          "name": "rolldown-runtime-Cyuzqnbw.js",
+          "bytes": 826
+        },
+        {
+          "name": "reduced-motion-9cbmD0Xv.js",
+          "bytes": 269
+        },
+        {
+          "name": "index-CScEgjcL.js",
+          "bytes": 63718
+        },
+        {
+          "name": "is-svg-component-CbNyC13T.js",
+          "bytes": 30646
+        },
+        {
+          "name": "react-vendor-qie9gJa6.js",
+          "bytes": 189646
+        },
+        {
+          "name": "resolve-elements-B77bWpQo.js",
+          "bytes": 248
+        },
+        {
+          "name": "proxy-BAOpz7Bz.js",
+          "bytes": 8019
+        },
+        {
+          "name": "Works-Bpe4X37J.js",
+          "bytes": 7764
+        },
+        {
+          "name": "Experience-BwxHAVSJ.js",
+          "bytes": 3798
+        },
+        {
+          "name": "Tech-BpZxGWVm.js",
+          "bytes": 5626
+        },
+        {
+          "name": "Contact-Bbz-m0yp.js",
+          "bytes": 10651
+        },
+        {
+          "name": "is-html-element-CtocdrOo.js",
+          "bytes": 115
+        },
+        {
+          "name": "JSAnimation-BzVCatJ7.js",
+          "bytes": 13646
+        },
+        {
+          "name": "motionFeatures-B8HW130r.js",
+          "bytes": 23635
+        }
+      ],
+      "height": 12614,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "canvases": 2,
+      "js": [
+        {
+          "name": "index-CScEgjcL.js",
+          "bytes": 63718
+        },
+        {
+          "name": "rolldown-runtime-Cyuzqnbw.js",
+          "bytes": 826
+        },
+        {
+          "name": "reduced-motion-9cbmD0Xv.js",
+          "bytes": 269
+        },
+        {
+          "name": "is-svg-component-CbNyC13T.js",
+          "bytes": 30646
+        },
+        {
+          "name": "resolve-elements-B77bWpQo.js",
+          "bytes": 248
+        },
+        {
+          "name": "proxy-BAOpz7Bz.js",
+          "bytes": 8019
+        },
+        {
+          "name": "react-vendor-qie9gJa6.js",
+          "bytes": 189646
+        },
+        {
+          "name": "CustomCursor-Cf5pt17I.js",
+          "bytes": 4224
+        },
+        {
+          "name": "JSAnimation-BzVCatJ7.js",
+          "bytes": 13646
+        },
+        {
+          "name": "Works-Bpe4X37J.js",
+          "bytes": 7764
+        },
+        {
+          "name": "Experience-BwxHAVSJ.js",
+          "bytes": 3798
+        },
+        {
+          "name": "Tech-BpZxGWVm.js",
+          "bytes": 5626
+        },
+        {
+          "name": "Contact-Bbz-m0yp.js",
+          "bytes": 10651
+        },
+        {
+          "name": "motionFeatures-B8HW130r.js",
+          "bytes": 23635
+        },
+        {
+          "name": "is-html-element-CtocdrOo.js",
+          "bytes": 115
+        },
+        {
+          "name": "PrepziiMockup-CGpKqpMO.js",
+          "bytes": 12093
+        },
+        {
+          "name": "CaseFlowMockup-D1nzGKFk.js",
+          "bytes": 6564
+        },
+        {
+          "name": "SkaleKraftMockup-DtxvElUO.js",
+          "bytes": 4960
+        },
+        {
+          "name": "FlamziMockup-BDI9GYZj.js",
+          "bytes": 4951
+        },
+        {
+          "name": "Stars-DScwhYUy.js",
+          "bytes": 1619
+        },
+        {
+          "name": "three-react-Dj9JAkmh.js",
+          "bytes": 172588
+        },
+        {
+          "name": "three-core-CsQJytzG.js",
+          "bytes": 722852
+        },
+        {
+          "name": "SceneCanvas-CNoonUb2.js",
+          "bytes": 1081
+        },
+        {
+          "name": "HeroCore-IYU2VopL.js",
+          "bytes": 3746
+        }
+      ],
+      "height": 15287,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "canvases": 2,
+      "js": [
+        {
+          "name": "rolldown-runtime-Cyuzqnbw.js",
+          "bytes": 826
+        },
+        {
+          "name": "reduced-motion-9cbmD0Xv.js",
+          "bytes": 269
+        },
+        {
+          "name": "index-CScEgjcL.js",
+          "bytes": 63718
+        },
+        {
+          "name": "is-svg-component-CbNyC13T.js",
+          "bytes": 30646
+        },
+        {
+          "name": "proxy-BAOpz7Bz.js",
+          "bytes": 8019
+        },
+        {
+          "name": "react-vendor-qie9gJa6.js",
+          "bytes": 189646
+        },
+        {
+          "name": "resolve-elements-B77bWpQo.js",
+          "bytes": 248
+        },
+        {
+          "name": "CustomCursor-Cf5pt17I.js",
+          "bytes": 4224
+        },
+        {
+          "name": "JSAnimation-BzVCatJ7.js",
+          "bytes": 13646
+        },
+        {
+          "name": "Works-Bpe4X37J.js",
+          "bytes": 7764
+        },
+        {
+          "name": "Experience-BwxHAVSJ.js",
+          "bytes": 3798
+        },
+        {
+          "name": "Tech-BpZxGWVm.js",
+          "bytes": 5626
+        },
+        {
+          "name": "Contact-Bbz-m0yp.js",
+          "bytes": 10651
+        },
+        {
+          "name": "motionFeatures-B8HW130r.js",
+          "bytes": 23635
+        },
+        {
+          "name": "is-html-element-CtocdrOo.js",
+          "bytes": 115
+        },
+        {
+          "name": "PrepziiMockup-CGpKqpMO.js",
+          "bytes": 12093
+        },
+        {
+          "name": "CaseFlowMockup-D1nzGKFk.js",
+          "bytes": 6564
+        },
+        {
+          "name": "SkaleKraftMockup-DtxvElUO.js",
+          "bytes": 4960
+        },
+        {
+          "name": "FlamziMockup-BDI9GYZj.js",
+          "bytes": 4951
+        },
+        {
+          "name": "Stars-DScwhYUy.js",
+          "bytes": 1619
+        },
+        {
+          "name": "three-react-Dj9JAkmh.js",
+          "bytes": 172588
+        },
+        {
+          "name": "three-core-CsQJytzG.js",
+          "bytes": 722852
+        },
+        {
+          "name": "SceneCanvas-CNoonUb2.js",
+          "bytes": 1081
+        },
+        {
+          "name": "HeroCore-IYU2VopL.js",
+          "bytes": 3746
+        }
+      ],
+      "height": 11279,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "canvases": 2,
+      "js": [
+        {
+          "name": "index-CScEgjcL.js",
+          "bytes": 63718
+        },
+        {
+          "name": "rolldown-runtime-Cyuzqnbw.js",
+          "bytes": 826
+        },
+        {
+          "name": "reduced-motion-9cbmD0Xv.js",
+          "bytes": 269
+        },
+        {
+          "name": "is-svg-component-CbNyC13T.js",
+          "bytes": 30646
+        },
+        {
+          "name": "resolve-elements-B77bWpQo.js",
+          "bytes": 248
+        },
+        {
+          "name": "proxy-BAOpz7Bz.js",
+          "bytes": 8019
+        },
+        {
+          "name": "react-vendor-qie9gJa6.js",
+          "bytes": 189646
+        },
+        {
+          "name": "CustomCursor-Cf5pt17I.js",
+          "bytes": 4224
+        },
+        {
+          "name": "JSAnimation-BzVCatJ7.js",
+          "bytes": 13646
+        },
+        {
+          "name": "Experience-BwxHAVSJ.js",
+          "bytes": 3798
+        },
+        {
+          "name": "Works-Bpe4X37J.js",
+          "bytes": 7764
+        },
+        {
+          "name": "Tech-BpZxGWVm.js",
+          "bytes": 5626
+        },
+        {
+          "name": "Contact-Bbz-m0yp.js",
+          "bytes": 10651
+        },
+        {
+          "name": "motionFeatures-B8HW130r.js",
+          "bytes": 23635
+        },
+        {
+          "name": "is-html-element-CtocdrOo.js",
+          "bytes": 115
+        },
+        {
+          "name": "PrepziiMockup-CGpKqpMO.js",
+          "bytes": 12093
+        },
+        {
+          "name": "CaseFlowMockup-D1nzGKFk.js",
+          "bytes": 6564
+        },
+        {
+          "name": "SkaleKraftMockup-DtxvElUO.js",
+          "bytes": 4960
+        },
+        {
+          "name": "FlamziMockup-BDI9GYZj.js",
+          "bytes": 4951
+        },
+        {
+          "name": "Stars-DScwhYUy.js",
+          "bytes": 1619
+        },
+        {
+          "name": "SceneCanvas-CNoonUb2.js",
+          "bytes": 1081
+        },
+        {
+          "name": "three-react-Dj9JAkmh.js",
+          "bytes": 172588
+        },
+        {
+          "name": "three-core-CsQJytzG.js",
+          "bytes": 722852
+        },
+        {
+          "name": "HeroCore-IYU2VopL.js",
+          "bytes": 3746
+        }
+      ],
+      "height": 10337,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "interactions": [
+    "Resume, case study, command search, terminal command, Escape dismissal",
+    "Prepzii tabs, Flamzi timer, technology selection, experience filtering",
+    "Contact validation, pending state, one mocked submission, success/reset",
+    "Mocked provider 500 shows error and retains message"
+  ],
+  "adaptive": [
+    "reduced-motion",
+    "low-cpu",
+    "save-data",
+    "tablet-touch"
+  ]
+}
